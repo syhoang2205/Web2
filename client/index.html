@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Products</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<style type="text/css">
+		.loader {
+			border: 8px solid #f3f3f3;
+			/* Light grey */
+			border-top: 8px solid #3498db;
+			/* Blue */
+			border-radius: 50%;
+			width: 80px;
+			height: 80px;
+			animation: spin 2s linear infinite;
+			margin: 0 auto;
+			display: none;
+		}
+
+		@keyframes spin {
+			0% {
+				transform: rotate(0deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html">Đấu Giá Trực Tuyến</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="register.html">Đăng Ký</a>
+					</li>
+					<li>
+						<a href="javascript:;">Đăng Nhập</a>
+					</li>
+					<li>
+						<a href="javascript:;">Đăng Suất</a>
+					</li>
+					<!-- <li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+					</li> -->
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Danh Mục Sản Phẩm</h3>
+					</div>
+					<div class="list-group">
+						<a href="#" class="list-group-item active">Item 1</a>
+						<a href="#" class="list-group-item">Item 2</a>
+						<a href="#" class="list-group-item">Item 3</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-9 col-md-9">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Products</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row" id="product-list">
+
+						</div>
+						<div class="loader"></div>
+						<div class="row">
+							<br>
+							<div class="col-sm-12 col-md-12">
+								<button id="btnMore" type="button" class="btn btn-large btn-block btn-success">
+									<h4>Load more...</h4>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script id="product-template" type="text/x-handlebars-template">
+		{{#each this}}
+		<div class="col-sm-4 col-md-4" style="display: none">
+			<div class="thumbnail">
+				<img src="imgs/sp/{{ProID}}/main_thumbs.jpg" alt="{{ProName}}" title="{{ProName}}">
+				<div class="caption">
+					<h4>{{ProName}}</h4>
+					<h3>{{formatNumber Price}}</h3>
+					<p style="height: 36px;">{{TinyDes}}</p>
+					<p>
+						<a href="javascript:;" class="btn btn-primary">
+							<span class="glyphicon glyphicon-eye-open"></span>
+							Details
+						</a>
+						<a href="javascript:;" class="btn btn-danger">
+							<span class="glyphicon glyphicon-shopping-cart"></span>
+							Add
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		{{/each}}
+	</script>
+
+	<script src="assets/jquery-3.1.1.min.js"></script>
+	<script src="assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<script src="assets/handlebars.min-v4.0.11.js"></script>
+	<script src="assets/handlebars-intl-1.1.2/handlebars-intl.min.js"></script>
+	<script src="assets/me/index.js"></script>
+</body>
+
+</html>
