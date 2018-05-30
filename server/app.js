@@ -3,9 +3,9 @@ var express = require('express'),
 	morgan = require('morgan')
 	cors = require('cors');
 
-var categoryCtrl = require('./apiControllers/categoryController'),
-	productCtrl = require('./apiControllers/productController'),
-	userCtrl = require('./apiControllers/userController');
+var sanphamCtrl = require('./apiControllers/SanPhamController');
+var danhmucCtrl = require('./apiControllers/DanhMucController');
+var tinhtrangCtrl = require('./apiControllers/TinhTrangController');
 
 var app = express();
 
@@ -14,17 +14,16 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-	// res.end('hello from nodejs');
 	var ret = {
 		msg: 'hello from nodejs api'
 	};
 	res.json(ret);
 });
 
-app.use('/categories', categoryCtrl);
-app.use('/users', userCtrl);
-app.use('/products', productCtrl);
+app.use('/sanpham', sanphamCtrl);
+app.use('/danhmuc', danhmucCtrl);
+app.use('/tinhtrang', tinhtrangCtrl);
 
-app.listen(80, () => {
-	console.log('API running on port 80');
+app.listen(500, () => {
+	console.log('API running on port 500');
 });

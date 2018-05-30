@@ -5,7 +5,7 @@ const _HOST = '127.0.0.1',
 	_PORT = '3306',
 	_USER = 'root',
 	_PWD = '',
-	_DB = 'daugiatructuyen';
+	_DB = 'qldaugia';
 
 exports.load = function (sql) {
 	var d = q.defer();
@@ -31,29 +31,6 @@ exports.load = function (sql) {
 
 	return d.promise;
 }
-
-// exports.load = function(sql, fn) {
-
-//     var cn = mysql.createConnection({
-// 		host: _HOST,
-// 		port: _PORT,
-// 		user: _USER,
-// 		password: _PWD,
-// 		database: _DB
-// 	});
-
-// 	cn.connect();
-// 	cn.query(sql, function (error, rows, fields) {
-// 		if (error) {
-// 			console.log(error);
-// 		} else {
-// 			// console.log(rows);
-// 			fn(rows);
-// 		}
-
-// 		cn.end();
-// 	});
-// }
 
 exports.insert = function (sql) {
 	var d = q.defer();
