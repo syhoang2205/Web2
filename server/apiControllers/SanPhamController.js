@@ -1,16 +1,39 @@
 var express = require('express');
-var SanPhamRepo = require('../repos/SanPhamRepo');
+var SanPhamRepo = require('../repos/SanPhamRepo'),
+	constants = require('../fn/const');
 
 var router = express.Router();
 
 router.get('/', (req, res) => {
-    SanPhamRepo.loadAll().then(rows => {
+    /* SanPhamRepo.loadAll().then(rows => {
         res.json(rows);
     }).catch(err => {
         console.log(err);
         res.statusCode = 500;
         res.end('View error log on console.');
-    });
+	}); */
+
+	var page = 1;
+	if (req.query.page) {
+		page = +req.query.page;
+	}
+
+	SanPhamRepo.loadPage(page).then(rows => {
+		var hasMore = rows.length > constants.PRODUCTS_PER_PAGE;
+		if (hasMore) {
+			rows.pop();
+		}
+
+		var data = {
+			sanpham: rows,
+			hasMore: hasMore
+		}
+		res.json(data);
+	}).catch(err => {
+		console.log(err);
+		res.statusCode = 500;
+		res.end('View error log on console.');
+	});
 });
 
 
@@ -82,11 +105,11 @@ router.post('/:id', (req, res) => {
 			res.statusCode = 201;
 			res.json(poco);
 		})
-		.catch(err => {
-			console.log(err);
-			res.statusCode = 500;
-			res.end();
-		});
+			.catch(err => {
+				console.log(err);
+				res.statusCode = 500;
+				res.end();
+			});
 	}
 });
 

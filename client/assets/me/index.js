@@ -1,28 +1,28 @@
 var CUR_PAGE = 1;
 
-$(function() {
+$(function () {
     HandlebarsIntl.registerWith(Handlebars);
     loadProducts();
 });
 
-$('#btnMore').on('click', function() {
+$('#btnMore').on('click', function () {
     loadProducts();
 });
 
-var loadProducts = function() {
+var loadProducts = function () {
     $('.loader').show();
 
     $.ajax({
-        url: 'http://localhost:80/products?page=' + CUR_PAGE,
+        url: 'http://localhost:500/sanpham?page=' + CUR_PAGE,
         dataType: 'json',
         timeout: 10000
-    }).done(function(data) {
+    }).done(function (data) {
         var source = $('#product-template').html();
         var template = Handlebars.compile(source);
-        var html = template(data.products);
+        var html = template(data.sanpham);
         $('#product-list').append(html);
 
-        $('#product-list div[style]').fadeIn(200, function() {
+        $('#product-list div[style]').fadeIn(200, function () {
             $(this).removeAttr('style');
         });
 
@@ -35,11 +35,11 @@ var loadProducts = function() {
     });
 };
 
-var loadCategory = function() {
+/* var loadCategory = function() {
     $('.loadCate').show();
 
     $.ajax({
-        url: 'http://localhost:80/products?page=' + CUR_PAGE,
+        url: 'http://localhost:500/products?page=' + CUR_PAGE,
         dataType: 'json',
         timeout: 10000
     }).done(function(data) {
@@ -59,4 +59,4 @@ var loadCategory = function() {
 
         $('.loader').hide();
     });
-};
+}; */

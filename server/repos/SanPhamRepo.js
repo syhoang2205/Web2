@@ -1,7 +1,14 @@
-var db = require('../fn/mysql-db');
-
+var db = require('../fn/mysql-db'),
+	constants = require('../fn/const');
+	
 exports.loadAll = function() {
 	var sql = 'select * from sanpham';
+	return db.load(sql);
+}
+
+exports.loadPage = function(page) {
+    var offset = (page - 1) * constants.PRODUCTS_PER_PAGE;
+    var sql = `select * from sanpham limit ${constants.PRODUCTS_PER_PAGE + 1} offset ${offset}`;
 	return db.load(sql);
 }
 
