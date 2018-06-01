@@ -12,10 +12,7 @@ $(function() {
 
     $('#registerForm').validate({
         rules: {
-            UID: {
-                required: true
-            },
-            PWD: {
+            PASSWORD: {
                 required: true,
                 minlength: 6,
                 maxlength: 20
@@ -24,23 +21,19 @@ $(function() {
                 required: true,
                 equalTo: $('#txtPassword')
             },
-            FullName: {
+            HOTEN: {
                 required: true,
             },
-            Email: {
+            MAIL: {
                 required: true,
                 email: true
             },
-            DOB: {
+            DIACHI: {
                 required: true,
-                vndate: true
             },
         },
         messages: {
-            UID: {
-                required: 'Please input UID'
-            },
-            PWD: {
+            PASSWORD: {
                 required: "Chưa nhập mật khẩu.",
                 minlength: "Mật khẩu phải nhiều hơn 6 ký tự."
             },
@@ -48,16 +41,15 @@ $(function() {
                 required: "Chưa nhập lại mật khẩu.",
                 equalTo: "Mật khẩu nhập lại không khớp."
             },
-            FullName: {
+            HOTEN: {
                 required: "Chưa nhập họ tên.",
             },
-            Email: {
+            MAIL: {
                 required: "Chưa nhập email.",
                 email: "Email không đúng định dạng."
             },
-            DOB: {
-                required: "Chưa nhập ngày sinh.",
-                vndate: 'FAILED'
+            DIACHI: {
+                required: "Chưa nhập địa chỉ.",
             },
         },
 
@@ -95,7 +87,7 @@ $('#btnRegister').on('click', function() {
         };
 
         $.ajax({
-            url: 'http://localhost:3000/users/captcha',
+            url: 'http://localhost:500/users/captcha',
             dataType: 'json',
             timeout: 10000,
             type: 'POST',
@@ -115,6 +107,6 @@ $('#btnRegister').on('click', function() {
             console.log(xhr);
         });
     } else {
-        // swal("Good job!", "You clicked the button!", "error");
+        swal("Failed", "You clicked the button!", "error");
     }
 });
