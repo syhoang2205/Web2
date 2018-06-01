@@ -8,6 +8,7 @@ var danhmucCtrl = require('./apiControllers/DanhMucController');
 var tinhtrangCtrl = require('./apiControllers/TinhTrangController');
 var taikhoanCtrl = require('./apiControllers/TaiKhoanController');
 var loaitkCtrl = require('./apiControllers/LoaiTKController');
+var ketquadgCtrl = require('./apiControllers/KetQuaDGController');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use('/danhmuc', danhmucCtrl);
 app.use('/tinhtrang', tinhtrangCtrl);
 app.use('/taikhoan', taikhoanCtrl);
 app.use('/loaitk', loaitkCtrl);
+app.use('/ketquadg', ketquadgCtrl);
 
 app.listen(500, () => {
 	console.log('API running on port 500');

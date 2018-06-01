@@ -18,7 +18,7 @@ exports.load = function(id) {
 }
 
 exports.add = function(poco) {
-	var sql = `insert into sanpham(TENSP, MADM, GIAKHOIDIEM, GIABAN, MOTA, HINH, NGUOIBAN) values('${poco.TENSP}', '${poco.MADM}','${poco.GIAKHOIDIEM}','${poco.GIABAN}','${poco.MOTA}','${poco.HINH}','${poco.NGUOIBAN}')`;
+	var sql = `insert into sanpham(TENSP, MADM, GIAKHOIDIEM, GIABAN, MOTA, NGAYKT, HINH, NGUOIBAN) values('${poco.TENSP}', '${poco.MADM}','${poco.GIAKHOIDIEM}','${poco.GIABAN}','${poco.MOTA}','${poco.NGAYKT}','${poco.HINH}','${poco.NGUOIBAN}')`;
 	return db.insert(sql);
 }
 

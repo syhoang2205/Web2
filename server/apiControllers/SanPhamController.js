@@ -5,14 +5,6 @@ var SanPhamRepo = require('../repos/SanPhamRepo'),
 var router = express.Router();
 
 router.get('/', (req, res) => {
-    /* SanPhamRepo.loadAll().then(rows => {
-        res.json(rows);
-    }).catch(err => {
-        console.log(err);
-        res.statusCode = 500;
-        res.end('View error log on console.');
-	}); */
-
 	var page = 1;
 	if (req.query.page) {
 		page = +req.query.page;
@@ -75,6 +67,7 @@ router.post('/', (req, res) => {
 				GIAKHOIDIEM: req.body.GIAKHOIDIEM,
 				GIABAN: req.body.GIABAN,
 				MOTA: req.body.MOTA,
+				NGAYKT: req.body.NGAYKT,
 				HINH: req.body.HINH,
 				NGUOIBAN: req.body.NGUOIBAN
 			};
