@@ -67,7 +67,6 @@ router.post('/', (req, res) => {
 				GIAKHOIDIEM: req.body.GIAKHOIDIEM,
 				GIABAN: req.body.GIABAN,
 				MOTA: req.body.MOTA,
-				NGAYKT: req.body.NGAYKT,
 				HINH: req.body.HINH,
 				NGUOIBAN: req.body.NGUOIBAN
 			};
