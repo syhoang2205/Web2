@@ -12,6 +12,12 @@ exports.login = function(poco) {
 	return db.load(sql);
 }
 
+exports.Admin = function(poco) {
+	var md5_password = md5(poco.PASSWORD);
+	var sql = `select * from taikhoan where LOAITK = 1 and MAIL like '${poco.MAIL}' and PASSWORD like '${md5_password}'`;
+	return db.load(sql);
+}
+
 exports.checkmail = function(mail) {
 	var sql = `select * from taikhoan where MAIL like '${mail}'`;
 	return db.load(sql);

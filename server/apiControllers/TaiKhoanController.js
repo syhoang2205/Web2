@@ -47,6 +47,21 @@ router.post('/login', (req, res) => {
 	});
 });
 
+router.post('/Admin', (req, res) => {
+	TaiKhoanRepo.Admin(req.body).then(rows => {
+		if (rows.length > 0) {
+			res.json("Success");
+		} else {
+			res.statusCode = 204;
+			res.end();
+		}
+	}).catch(err => {
+		console.log(err);
+		res.statusCode = 500;
+		res.json('error');
+	});
+});
+
 router.post('/', (req, res) => {
 
 	TaiKhoanRepo.checkmail(req.body.MAIL).then(rows => {

@@ -1,3 +1,4 @@
+var location = require('location-href');
 $(function() {
 
     $('.datepicker').datepicker({
@@ -119,6 +120,9 @@ $('#btnRegister').on('click', function() {
                 		swal("Mail Owner!", "Please Choose Other Mail!", "error");
                 	} else {
                 		swal("Good job!", "You clicked the button!", "success");
+                		.then(() => {
+			            	window.location.href = './login.html';
+			            });
                 	}
                 }).fail(function(xhr, textStatus, error) {
                     console.log(textStatus);

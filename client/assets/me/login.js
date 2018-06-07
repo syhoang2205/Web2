@@ -17,7 +17,10 @@ $('#btnLogin').on('click', function() {
         data: jsonToPost
     }).done(function(data) {
         if (data === "Success") {
-            swal("Đăng Nhập Thành Công.", "You clicked the button!", "success");
+            swal("Đăng Nhập Thành Công.", "You clicked the button!", "success")
+            .then(() => {
+            	window.location.href = './index.html';
+            });
         } else {
             swal("Sai Tài Khoản Hoặc Mật Khẩu.", "You clicked the button!", "error");
         }
