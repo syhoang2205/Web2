@@ -3,6 +3,16 @@ var LoaiTKRepo = require('../repos/LoaiTKRepo');
 
 var router = express.Router();
 
+router.get('/', (req, res) => {
+    LoaiTKRepo.loadAll().then(rows => {
+        res.json(rows);
+    }).catch(err => {
+        console.log(err);
+        res.statusCode = 500;
+        res.end('View error log on console.');
+    });
+});
+
 router.get('/:id', (req, res) => {
 	if (req.params.id) {
 		var id = req.params.id;

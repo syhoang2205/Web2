@@ -63,6 +63,29 @@ router.post('/', (req, res) => {
 		});
 });
 
+router.post('/captcha', (req, res) => {
+    var secret = '6LderVAUAAAAANlZ_RuqdomfqVp90ElsfXDP2WOX';
+    var captcha_response = req.body.captcha_response;
+
+    var url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${captcha_response}`;
+    axios.post(url, {
+            // secret: _secret,
+            // response: captcha_response
+        }, {
+        	headers: {
+        		"Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
+        	}
+        })
+    	.then(function(response) {
+            // console.log(response.data);
+            // res.end('ok');
+            res.json(response.data);
+        })
+        .catch(function(error) {
+            res.end('fail');
+        });
+});
+
 router.post('/:id', (req, res) => {
 	if (req.params.id) {
 		var id = req.params.id;
@@ -108,29 +131,6 @@ router.delete('/:id', (req, res) => {
 		res.statusCode = 400;
 		res.json('error');
 	}
-});
-
-router.post('/captcha', (req, res) => {
-    var secret = '6LderVAUAAAAANlZ_RuqdomfqVp90ElsfXDP2WOX';
-    var captcha_response = req.body.captcha_response;
-
-    var url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${captcha_response}`;
-    axios.post(url, {
-            // secret: _secret,
-            // response: captcha_response
-        }, {
-        	headers: {
-        		"Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
-        	}
-        })
-    	.then(function(response) {
-            // console.log(response.data);
-            // res.end('ok');
-            res.json(response.data);
-        })
-        .catch(function(error) {
-            res.end('fail');
-        });
 });
 
 module.exports = router;

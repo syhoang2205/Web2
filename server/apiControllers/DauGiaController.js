@@ -46,7 +46,8 @@ router.post('/', (req, res) => {
 			var poco = {
 				MASP: req.body.MASP,
 				MAIL: req.body.MAIL,
-				GIA: req.body.GIA
+				GIA: req.body.GIA,
+				MATK: req.body.MATK
 			};
 			res.statusCode = 201;
 			res.json(poco);
@@ -56,6 +57,30 @@ router.post('/', (req, res) => {
 			res.statusCode = 500;
 			res.end();
 		});
+});
+
+router.delete('/:id', (req, res) => {
+	if (req.params.id) {
+		var id = req.params.id;
+
+		if (isNaN(id)) {
+			res.statusCode = 400;
+			res.end();
+			return;
+		}
+		DauGiaRepo.delete(id).then(affectedRows => {
+			res.json({
+				affectedRows: affectedRows
+			});
+		}).catch(err => {
+			console.log(err);
+			res.statusCode = 500;
+			res.json('error');
+		});
+	} else {
+		res.statusCode = 400;
+		res.json('error');
+	}
 });
 
 module.exports = router;
