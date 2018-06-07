@@ -11,9 +11,9 @@ var tinhtrangCtrl = require('./apiControllers/TinhTrangController');
 var taikhoanCtrl = require('./apiControllers/TaiKhoanController');
 var loaitkCtrl = require('./apiControllers/LoaiTKController');
 var ketquadgCtrl = require('./apiControllers/KetQuaDGController');
-var loginCtrl = require('./apiControllers/LoginController')
+
 var app = express();
-app.post('/api/Login',loginCtrl.login);
+
 app.use(morgan('dev'));
 app.use(cors());
 app.use(bodyParser.json());

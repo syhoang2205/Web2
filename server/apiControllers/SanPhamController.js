@@ -57,6 +57,41 @@ router.get('/:id', (req, res) => {
 	}
 });
 
+router.get('/Search/:text', (req, res) => {
+	var text = req.params.text;
+
+	SanPhamRepo.Search(text).then(rows => {
+		if (rows.length > 0) {
+			res.json(rows);
+		} else {
+			res.statusCode = 204;
+			res.end();
+		}
+	}).catch(err => {
+		console.log(err);
+		res.statusCode = 500;
+		res.json('error');
+	});
+});
+
+router.get('/Search/:text/:madm', (req, res) => {
+	var text = req.params.text;
+	var madm = req.params.madm;
+
+	SanPhamRepo.timkiem(text,madm).then(rows => {
+		if (rows.length > 0) {
+			res.json(rows);
+		} else {
+			res.statusCode = 204;
+			res.end();
+		}
+	}).catch(err => {
+		console.log(err);
+		res.statusCode = 500;
+		res.json('error');
+	});
+});
+
 router.post('/', (req, res) => {
 	SanPhamRepo.add(req.body)
 		.then(insertId => {

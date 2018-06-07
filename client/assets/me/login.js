@@ -1,19 +1,22 @@
 $('#btnLogin').on('click', function() {
+	var _MAIL = $('#txtEmail').val();
+	var _PASS = $('#txtPassword').val();
+
     var dataToPost = {
-        user: 'nndkhoa',
-        pwd: '123456'
+        "MAIL": _MAIL,
+        "PASSWORD": _PASS
     };
     var jsonToPost = JSON.stringify(dataToPost);
 
     $.ajax({
-        url: 'http://localhost:500/login',
+        url: 'http://localhost:500/taikhoan/login',
         type: 'POST',
         dataType: 'json',
         timeout: 10000,
         contentType: 'application/json',
         data: jsonToPost
     }).done(function(data) {
-        if (data.success) {
+        if (data === "Success") {
             swal("Đăng Nhập Thành Công.", "You clicked the button!", "success");
         } else {
             swal("Sai Tài Khoản Hoặc Mật Khẩu.", "You clicked the button!", "error");

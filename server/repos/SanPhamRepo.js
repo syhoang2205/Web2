@@ -12,6 +12,16 @@ exports.loadPage = function(page) {
 	return db.load(sql);
 }
 
+exports.Search = function(text) {
+	var sql = `select * from sanpham where TENSP like '%${text}%'`;
+	return db.load(sql);
+}
+
+exports.timkiem = function(text, madm) {
+	var sql = `select * from sanpham where TENSP like '%${text}%' and MADM = ${madm}`;
+	return db.load(sql);
+}
+
 exports.load = function(id) {
 	var sql = `select * from sanpham where ID = ${id}`;
 	return db.load(sql);

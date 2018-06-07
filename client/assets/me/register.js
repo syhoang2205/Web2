@@ -79,15 +79,13 @@ $('#btnRegister').on('click', function() {
 
     var isValid = $('#registerForm').valid();
     if (isValid) {
-        // var captcha_response = grecaptcha.getResponse();
-        // console.log(captcha_response);
 
         var body = {
             captcha_response: grecaptcha.getResponse()
         };
 
         $.ajax({
-            url: 'http://localhost:500/users/captcha',
+            url: 'http://localhost:500/taikhoan/captcha',
             dataType: 'json',
             timeout: 10000,
             type: 'POST',
@@ -96,7 +94,38 @@ $('#btnRegister').on('click', function() {
         }).done(function(data) {
             // console.log(data);
             if (data.success) {
-                swal("Good job!", "You clicked the button!", "success");
+                var _Name = $('#txtName').val();
+                var _Mail = $('#txtEmail').val();
+                var _PASSWORD = $('#txtPassword').val();
+                var _DIACHI = $('#txtAddr').val();
+
+                var bodys = {
+                    HOTEN: _Name,
+                    MAIL: _Mail,
+                    PASSWORD: _PASSWORD,
+                    DIACHI: _DIACHI,
+                    LOAITK: 2
+                };
+
+                $.ajax({
+                    url: 'http://localhost:500/taikhoan/',
+                    dataType: 'json',
+                    timeout: 10000,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(bodys)
+                }).done(function(data) {
+                	if (data === "Mail owner") {
+                		swal("Mail Owner!", "Please Choose Other Mail!", "error");
+                	} else {
+                		swal("Good job!", "You clicked the button!", "success");
+                	}
+                }).fail(function(xhr, textStatus, error) {
+                    console.log(textStatus);
+                    console.log(error);
+                    console.log(xhr);
+                });
+
             } else {
                 grecaptcha.reset();
                 swal("Invalid captcha.", "You clicked the button!", "error");
