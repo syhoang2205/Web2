@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Đăng Nhập </title>
+	<title>Chi Tiết Sản Phẩm</title>
 	<link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
@@ -17,13 +17,14 @@
 
 <body>
 
+
 	<div id="header">
 		<div class="header-body" style="background-color: #0277b8;">
 			<div class="container">
 				<!-- <a class="visible-xs beta-menu-toggle pull-right" href="#">
-							<span class='beta-menu-toggle-text'>Menu</span>
-							<i class="fa fa-bars"></i>
-						</a> -->
+									<span class='beta-menu-toggle-text'>Menu</span>
+									<i class="fa fa-bars"></i>
+								</a> -->
 				<div class="visible-xs clearfix"></div>
 				<nav class="main-menu">
 					<ul class="l-inline ov">
@@ -60,15 +61,16 @@
 		<!-- .header-body -->
 	</div>
 	<!-- #header -->
+
 	<div class="inner-header">
 		<div class="container">
 			<div class="pull-left">
-				<h6 class="inner-title">Đăng nhập</h6>
+				<h6 class="inner-title">Product</h6>
 			</div>
 			<div class="pull-right">
-				<div class="beta-breadcrumb">
+				<div class="beta-breadcrumb font-large">
 					<a href="index.html">Home</a> /
-					<span>Đăng nhập</span>
+					<span>Product</span>
 				</div>
 			</div>
 			<div class="clearfix"></div>
@@ -78,40 +80,51 @@
 	<div class="container">
 		<div id="content">
 			<div class="row">
-				<div class="space20">&nbsp;</div>
-				<div class="col-sm-12 col-md-12">
-					<form class="form-horizontal" id="signInForm">
-						<div class="col-sm-3"></div>
-						<div class="form-group">
-							<div class="col-sm-6">
-								<input type="text" class="form-control" id="txtEmail" name="MAIL" placeholder="Steve@gmail.com">
+				<div class="col-sm-9">
+
+					<div class="row">
+						<div class="col-sm-4">
+							<img src="assets/dest/images/products/6.jpg" alt="">
+						</div>
+						<div class="col-sm-8">
+							<div class="single-item-body">
+								<p class="single-item-title">Sample Woman Top</p>
+								<p class="single-item-price">
+									<span>$34.55</span>
+								</p>
+							</div>
+
+							<div class="clearfix"></div>
+							<div class="space20">&nbsp;</div>
+
+							<div class="single-item-desc">
+								<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo ms id quod maxime placeat facere
+									possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis
+									aut rerum necessitatibus saepe.</p>
+							</div>
+							<div class="space20">&nbsp;</div>
+
+							<p>Options:</p>
+							<div class="single-item-options">
+								<select class="wc-select" name="size">
+									<option>Size</option>
+									<option value="XS">XS</option>
+									<option value="S">S</option>
+									<option value="M">M</option>
+									<option value="L">L</option>
+									<option value="XL">XL</option>
+								</select>
+
+								<button type="button" class="btn btn-primary">Đấu Giá</button>
+								<button type="button" class="btn btn-primary">Mua Ngay</button>
+								<div class="clearfix"></div>
 							</div>
 						</div>
-						<div class="col-sm-3"></div>
-						<div class="form-group">
-							<div class="col-sm-6">
-								<input type="password" class="form-control" name="PASSWORD" id="txtPassword" placeholder="Password">
-							</div>
-						</div>
-						<div class="col-sm-3"></div>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-6">
-								<button id="btnLogin" type="button" class="btn btn-primary">
-									<span class="glyphicon glyphicon-plus"></span>
-									Đăng Nhập
-								</button>
-							</div>
-						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>
-		</form>
 	</div>
-	<!-- #content -->
-	</div>
-	<!-- .container -->
-
 	<!-- include js files -->
 	<script src="assets/dest/js/jquery.js"></script>
 	<script src="assets/dest/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
@@ -121,11 +134,8 @@
 	<script src="assets/dest/vendors/animo/Animo.js"></script>
 	<script src="assets/dest/vendors/dug/dug.js"></script>
 	<script src="assets/dest/js/scripts.min.js"></script>
-	<script src="assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-	<script src="assets/jquery-validation-1.12.0/jquery.validate.min.js"></script>
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="assets/me/register.js"></script>
 
+	<!--customjs-->
 </body>
 
 </html>

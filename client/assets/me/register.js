@@ -119,7 +119,7 @@ $('#btnRegister').on('click', function() {
                 	if (data === "Mail owner") {
                 		swal("Mail Owner!", "Please Choose Other Mail!", "error");
                 	} else {
-                		swal("Good job!", "You clicked the button!", "success");
+                		swal("Good job!", "You clicked the button!", "success")
                 		.then(() => {
 			            	window.location.href = './login.html';
 			            });
