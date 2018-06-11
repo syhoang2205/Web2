@@ -3,8 +3,8 @@ var CUR_PAGE = 1;
 $(function () {
     HandlebarsIntl.registerWith(Handlebars);
     loadProducts();
+    loadDM();
 });
-
 $('#btnMore').on('click', function () {
     loadProducts();
 });
@@ -32,5 +32,18 @@ var loadProducts = function () {
         }
 
         $('.loader').hide();
+    });
+};
+
+var loadDM = function () {
+    $.ajax({
+        url: 'http://localhost:500/danhmuc',
+        dataType: 'json',
+        timeout: 10000
+    }).done(function(data) {
+        $.each(data, function(idx, item) {
+            var tr = '<div class="list-group"> <a href="?idm=' + item.ID + '" class="list-group-item">' + item.TENDM + '</a>' + '</div>';
+            $('#list').append(tr);
+        });
     });
 };

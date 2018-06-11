@@ -1,8 +1,8 @@
 var md5 = require('md5');
 var db = require('../fn/mysql-db');
 
-exports.load = function(id) {
-	var sql = `select * from taikhoan where TINHTRANG = 1 and ID = ${id}`;
+exports.load = function(mail) {
+	var sql = `select * from taikhoan where TINHTRANG = 1 and MAIL = '${mail}'`;
 	return db.load(sql);
 }
 

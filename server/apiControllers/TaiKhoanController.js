@@ -4,32 +4,21 @@ var TaiKhoanRepo = require('../repos/TaiKhoanRepo');
 
 var router = express.Router();
 
-router.get('/:id', (req, res) => {
-	if (req.params.id) {
-		var id = req.params.id;
+router.get('/:mail', (req, res) => {
+	var mail = req.params.mail;
 
-		if (isNaN(id)) {
-			res.statusCode = 400;
+	TaiKhoanRepo.load(mail).then(rows => {
+		if (rows.length > 0) {
+			res.json(rows);
+		} else {
+			res.statusCode = 204;
 			res.end();
-			return;
 		}
-
-		TaiKhoanRepo.load(id).then(rows => {
-			if (rows.length > 0) {
-				res.json(rows[0]);
-			} else {
-				res.statusCode = 204;
-				res.end();
-			}
-		}).catch(err => {
-			console.log(err);
-			res.statusCode = 500;
-			res.json('error');
-		});
-	} else {
-		res.statusCode = 400;
+	}).catch(err => {
+		console.log(err);
+		res.statusCode = 500;
 		res.json('error');
-	}
+	});
 });
 
 router.post('/login', (req, res) => {

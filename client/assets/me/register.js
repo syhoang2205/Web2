@@ -1,4 +1,3 @@
-var location = require('location-href');
 $(function() {
 
     $('.datepicker').datepicker({
@@ -54,15 +53,13 @@ $(function() {
             },
         },
 
-        highlight: function(element) { // hightlight error inputs
+        highlight: function(element) {
             $(element)
                 .closest('.form-group')
-                .addClass('has-error'); // set error class to the control group
+                .addClass('has-error');
         },
 
         success: function(label) {
-            // var name = label.attr('for');
-            // $('[name=' + name + ']').closest('.form-group').removeClass('has-error');
 
             label.closest('.form-group').removeClass('has-error');
             label.remove();
@@ -119,7 +116,7 @@ $('#btnRegister').on('click', function() {
                 	if (data === "Mail owner") {
                 		swal("Mail Owner!", "Please Choose Other Mail!", "error");
                 	} else {
-                		swal("Good job!", "You clicked the button!", "success");
+                		swal("Good job!", "You clicked the button!", "success")
                 		.then(() => {
 			            	window.location.href = './login.html';
 			            });
