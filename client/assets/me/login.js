@@ -28,7 +28,9 @@ $('#btnLogin').on('click', function() {
             }).done(function(data) {
                 $.each(data, function(idx, item) {
                     sessionStorage.setItem('user', item.HOTEN);
-                    sessionStorage.setItem('id', item.ID);
+                    sessionStorage.setItem('mail', item.MAIL);
+                    sessionStorage.setItem('diachi', item.DIACHI);
+                    sessionStorage.setItem('ngaytg', item.createdAt);
                 });
             });
         } else {

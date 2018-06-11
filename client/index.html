@@ -31,10 +31,10 @@
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="Search">
 					</div>
+					<button id="btnsearch" type="submit" class="btn btn-default">Search</button>
 					<button id="btnwishlist" type="button" class="btn btn-default">Wishlist</button>
 				</form>
 			</div>
-			<!-- /.navbar-collapse -->
 		</div>
 	</nav>
 	<div class="container-fluid">
@@ -76,12 +76,12 @@
 		{{#each this}}
 		<div class="col-sm-3 col-md-3" style="display: none">
 			<div class="thumbnail">
-				<img src="imgs/sp/{{ProID}}/{{HINH}}">
+				<img src="imgs/sp/{{HINH}}">
 				<div class="caption">
 					<h4>{{TENSP}}</h4>
 					<h5>{{formatNumber GIAKHOIDIEM}}</h5>
 					<p>
-						<a href="javascript:;" class="btn btn-primary">
+						<a href="javascript:;" class="btn btn-primary" data-toggle="modal" data-target="#sp-modal{{ID}}">
 							<span class="glyphicon glyphicon-eye-open"></span>
 							Details
 						</a>
@@ -90,6 +90,19 @@
 							Add
 						</a>
 					</p>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="sp-modal{{ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    	<div class="modal-dialog">
+				<div class="loginmodal-container">
+					<img src="imgs/sp/{{HINH}}" height="300" width="300">
+					<form>
+						<h1>{{TENSP}}</h1>
+						<h5>Giá Đấu Giá: {{formatNumber GIAKHOIDIEM}}</h5>
+						<h5>Giá Bán: {{formatNumber GIABAN}}</h5>
+						<h5>Mô Tả: {{MOTA}}</h5>
+					</form>
 				</div>
 			</div>
 		</div>
