@@ -90,7 +90,11 @@ we set it to max-height: 0, and hide the overflowed content.
         .submenu {
             overflow: hidden;
             max-height: 0;
-            -webkit-transition: all 0.5s ease-out;
+            /* -webkit-transition: all 0.5s ease-out; */
+        }
+
+        input {
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -146,25 +150,34 @@ we set it to max-height: 0, and hide the overflowed content.
                             <a>Sản Phẩm</a>
                             <ul class="submenu">
                                 <li>
-                                    <a href="insertproduct.html">Thêm Sản Phẩm</a>
+                                    <a>Thêm Sản Phẩm</a>
                                 </li>
                                 <li>
-                                    <a href="">Sản Phẩm Bán</a>
+                                    <a href="SanPhamBan.html">Sản Phẩm Bán</a>
                                 </li>
                                 <li>
-                                    <a href="">Sản Phẩm Mua</a>
+                                    <a href="SanPhamMua.html">Sản Phẩm Mua</a>
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </nav>
             </div>
-            <div class="col-sm-9 col-md-9">
+            <div class="col-sm-6 col-md-6">
                 <h1>Thêm Sản Phẩm Bán</h1>
-                <div>
-                    <input type="text" placeholder="Tên Sản Phẩm" required>
-                </div>
+                <form action="">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Tên Sản Phẩm" required>
+                        <input type="number" class="form-control" placeholder="Giá Đấu" required>
+                        <input type="number" class="form-control" placeholder="Giá Mua Ngay" required>
+                        <textarea class="form-control" rows="5" placeholder="Mô Tả Sản Phẩm" required></textarea>
+                    </div>
+                    <input type="file" id="image" />
+                    <button type="button" id="btnAddSanPham" class="btn btn-primary btn-block">Đăng Sản Phẩm</button>
+                </form>
+
             </div>
+            <div class="col-sm-3 col-md-3"></div>
         </div>
     </div>
 
