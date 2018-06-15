@@ -57,6 +57,6 @@ app.use('/taikhoan', taikhoanCtrl);
 app.use('/loaitk', loaitkCtrl);
 app.use('/ketquadg', ketquadgCtrl);
 
-app.listen(500, () => {
+app.listen(500 , () => {
 	console.log('API running on port 500');
 });

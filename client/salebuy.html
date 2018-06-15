@@ -6,18 +6,93 @@
 	<meta charset="utf-8">
 	<script src="assets/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/bootstrap-3.3.7-dist/css/style.css">
+	<!-- <link rel="stylesheet" type="text/css" href="assets/bootstrap-3.3.7-dist/css/style.css"> -->
 	<script>
 		function load() {
-			document.getElementById('user').innerHTML =  sessionStorage.getItem('user');
-			document.getElementById('hoten').innerHTML =  sessionStorage.getItem('user');
-			document.getElementById('mail').innerHTML =  sessionStorage.getItem('mail');
-			document.getElementById('diachi').innerHTML =  sessionStorage.getItem('diachi');
+			document.getElementById('user').innerHTML = sessionStorage.getItem('user');
+			document.getElementById('hoten').innerHTML = sessionStorage.getItem('user');
+			document.getElementById('mail').innerHTML = sessionStorage.getItem('mail');
+			document.getElementById('diachi').innerHTML = sessionStorage.getItem('diachi');
 		}
 		function logout() {
 			sessionStorage.setItem('mail', null);
 		}
 	</script>
+	<style>
+		html,
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		/* define a fixed width for the entire menu */
+
+		.navigation {
+			width: 300px;
+		}
+
+		/* reset our lists to remove bullet points and padding */
+
+		.mainmenu,
+		.submenu {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		/* make ALL links (main and submenu) have padding and background color */
+
+		.mainmenu a {
+			display: block;
+			background-color: #fff;
+			text-decoration: none;
+			padding: 10px;
+			color: #000;
+			border: solid 1px #337ab7;
+			border-radius: 4px;
+		}
+
+		/* add hover behaviour */
+
+		.mainmenu a:hover {
+			background-color: #337ab7;
+		}
+
+
+		/* when hovering over a .mainmenu item,
+display the submenu inside it.
+we're changing the submenu's max-height from 0 to 200px;
+*/
+
+		.mainmenu li:hover .submenu {
+			display: block;
+			max-height: 200px;
+		}
+
+		/*
+we now overwrite the background-color for .submenu links only.
+CSS reads down the page, so code at the bottom will overwrite the code at the top.
+*/
+
+		.submenu a {
+			background-color: #337ab7;
+		}
+
+		/* hover behaviour for links inside .submenu */
+
+		.submenu a:hover {
+			background-color: #fff;
+		}
+
+		/* this is the initial state of all submenus.
+we set it to max-height: 0, and hide the overflowed content.
+*/
+
+		.submenu {
+			overflow: hidden;
+			max-height: 0;
+			-webkit-transition: all 0.5s ease-out;
+		}
+	</style>
 </head>
 
 <body onload="load()">
@@ -29,14 +104,25 @@
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
-			            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="user"></span><b class="caret"></b></a>
-			            <ul class="dropdown-menu">
-			                <li><a href="#" data-toggle="modal" data-target="#info-modal">Cá Nhân</a></li>
-			                <li><a href="#" data-toggle="modal" data-target="#repass-modal">Đổi Mật Khẩu</a></li>
-			                <li><a href="#">Bán/Mua Hàng</a></li>
-			                <li><a href="index.html" onclick="logout()">Đăng Suất</a></li>
-			            </ul>
-			        </li>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<span id="user"></span>
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="#" data-toggle="modal" data-target="#info-modal">Cá Nhân</a>
+							</li>
+							<li>
+								<a href="#" data-toggle="modal" data-target="#repass-modal">Đổi Mật Khẩu</a>
+							</li>
+							<li>
+								<a href="#">Bán/Mua Hàng</a>
+							</li>
+							<li>
+								<a href="index.html" onclick="logout()">Đăng Suất</a>
+							</li>
+						</ul>
+					</li>
 				</ul>
 				<form class="navbar-form navbar-right" role="search">
 					<div class="form-group">
@@ -50,32 +136,36 @@
 	</nav>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-2 col-md-2">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Danh Mục Sản Phẩm</h3>
-					</div>
-					<div class="panel-heading" id="list"></div>
-				</div>
+			<div class="col-sm-3 col-md-3">
+				<nav class="navigation">
+					<ul class="mainmenu">
+						<li>
+							<a style="color: #fff; background-color: #337ab7">Quản Trị</a>
+						</li>
+						<li>
+							<a>Sản Phẩm</a>
+							<ul class="submenu">
+								<li>
+									<a href="insertproduct.html">Thêm Sản Phẩm</a>
+								</li>
+								<li>
+									<a href="">Sản Phẩm Bán</a>
+								</li>
+								<li>
+									<a href="">Sản Phẩm Mua</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
 			</div>
-			<div class="col-sm-10 col-md-10">
-				<div class="panel panel-default">
+			<div class="col-sm-9 col-md-9">
+				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<h3 class="panel-title">Sản Phẩm</h3>
 					</div>
 					<div class="panel-body">
-						<div class="row" id="product-list">
-						</div>
 
-						<div class="loader"></div>
-						<div class="row">
-							<br>
-							<div class="col-sm-12 col-md-12">
-								<button id="btnMore" type="button" class="btn btn-large btn-block btn-success">
-									<h4>Load more...</h4>
-								</button>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -83,15 +173,19 @@
 	</div>
 
 	<div class="modal fade" id="info-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    	<div class="modal-dialog">
+		<div class="modal-dialog">
 			<div class="loginmodal-container">
-				<h1>Thông Tin Cá Nhân</h1><br>
+				<h1>Thông Tin Cá Nhân</h1>
+				<br>
 				<form>
-					<label>Họ Tên: </label> <span id="hoten"></span>
+					<label>Họ Tên: </label>
+					<span id="hoten"></span>
 					<h1></h1>
-					<label>Mail: </label> <span id="mail"></span>
+					<label>Mail: </label>
+					<span id="mail"></span>
 					<h1></h1>
-					<label>Địa Chỉ: </label> <span id="diachi"></span>
+					<label>Địa Chỉ: </label>
+					<span id="diachi"></span>
 					<h1></h1>
 				</form>
 			</div>
@@ -99,15 +193,19 @@
 	</div>
 
 	<div class="modal fade" id="repass-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    	<div class="modal-dialog">
+		<div class="modal-dialog">
 			<div class="loginmodal-container">
-				<h1>Đổi Mật Khẩu</h1><br>
+				<h1>Đổi Mật Khẩu</h1>
+				<br>
 				<form>
-					<label>Mật Khẩu Cũ: </label> <input type="text" name="oldpass">
+					<label>Mật Khẩu Cũ: </label>
+					<input type="text" name="oldpass">
 					<h1></h1>
-					<label>Mật Khẩu Mới: </label> <input type="text" name="newpass">
+					<label>Mật Khẩu Mới: </label>
+					<input type="text" name="newpass">
 					<h1></h1>
-					<label>Xác Nhận MK: </label> <input type="text" name="renewpass">
+					<label>Xác Nhận MK: </label>
+					<input type="text" name="renewpass">
 					<h1></h1>
 				</form>
 				<button class="loginmodal-container">Change Password</button>
@@ -115,47 +213,11 @@
 		</div>
 	</div>
 
-	<script id="product-template" type="text/x-handlebars-template">
-		{{#each this}}
-		<div class="col-sm-3 col-md-3" style="display: none">
-			<div class="thumbnail">
-				<img src="imgs/sp/{{HINH}}">
-				<div class="caption">
-					<h4>{{TENSP}}</h4>
-					<h5>{{formatNumber GIAKHOIDIEM}}</h5>
-					<p>
-						<a href="javascript:;" class="btn btn-primary" data-toggle="modal" data-target="#sp-modal{{ID}}">
-							<span class="glyphicon glyphicon-eye-open"></span>
-							Details
-						</a>
-						<a href="javascript:;" class="btn btn-danger">
-							<span class="glyphicon glyphicon-shopping-cart"></span>
-							Add
-						</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="modal fade" id="sp-modal{{ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	    	<div class="modal-dialog">
-				<div class="loginmodal-container">
-					<img src="imgs/sp/{{HINH}}" height="300" width="300">
-					<form>
-						<h1>{{TENSP}}</h1>
-						<h5>Giá Đấu Giá: {{formatNumber GIAKHOIDIEM}}</h5>
-						<h5>Giá Bán: {{formatNumber GIABAN}}</h5>
-						<h5>Mô Tả: {{MOTA}}</h5>
-					</form>
-				</div>
-			</div>
-		</div>
-		{{/each}}
-	</script>
-
 	<script src="assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	<script src="assets/handlebars.min-v4.0.11.js"></script>
 	<script src="assets/handlebars-intl-1.1.2/handlebars-intl.min.js"></script>
 	<script src="assets/me/index.js"></script>
+	<script src="assets/bootstrap-3.3.7-dist/css/style.css"></script>
 </body>
 
 </html>
