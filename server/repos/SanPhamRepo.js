@@ -12,13 +12,21 @@ exports.loadPage = function(page) {
 	return db.load(sql);
 }
 
-exports.Search = function(text) {
-	var sql = `select * from sanpham where TENSP like '%${text}%'`;
+exports.Search = function(page, text) {
+	var offset = (page - 1) * constants.PRODUCTS_PER_PAGE;
+	var sql = `select * from sanpham where TENSP like '%${text}%' limit ${constants.PRODUCTS_PER_PAGE + 1} offset ${offset}`;
 	return db.load(sql);
 }
 
-exports.timkiem = function(text, madm) {
-	var sql = `select * from sanpham where TENSP like '%${text}%' and MADM = ${madm}`;
+exports.timkiem = function(page, text, madm) {
+	var offset = (page - 1) * constants.PRODUCTS_PER_PAGE;
+	var sql = `select * from sanpham where TENSP like '%${text}%' and MADM = ${madm} limit ${constants.PRODUCTS_PER_PAGE + 1} offset ${offset}`;
+	return db.load(sql);
+}
+
+exports.timkiemdm = function(page, dm) {
+	var offset = (page - 1) * constants.PRODUCTS_PER_PAGE;
+	var sql = `select * from sanpham where MADM = ${dm} limit ${constants.PRODUCTS_PER_PAGE + 1} offset ${offset}`;
 	return db.load(sql);
 }
 

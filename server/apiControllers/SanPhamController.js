@@ -58,19 +58,59 @@ router.get('/:id', (req, res) => {
 });
 
 router.get('/Search/:text', (req, res) => {
+	var page = 1;
 	var text = req.params.text;
+	if (req.query.page) {
+		page = +req.query.page;
+	}
 
-	SanPhamRepo.Search(text).then(rows => {
-		if (rows.length > 0) {
-			res.json(rows);
-		} else {
-			res.statusCode = 204;
-			res.end();
+	SanPhamRepo.Search(page, text).then(rows => {
+		var hasMore = rows.length > constants.PRODUCTS_PER_PAGE;
+		if (hasMore) {
+			rows.pop();
 		}
+
+		var data = {
+			sanpham: rows,
+			hasMore: hasMore
+		}
+		res.json(data);
 	}).catch(err => {
 		console.log(err);
 		res.statusCode = 500;
-		res.json('error');
+		res.end('View error log on console.');
+	});
+});
+
+router.get('/Searchs/:dm', (req, res) => {
+	var page = 1;
+	var dm = req.params.dm;
+
+	if (isNaN(dm)) {
+		res.statusCode = 400;
+		res.end();
+		return;
+	}
+
+	if (req.query.page) {
+		page = +req.query.page;
+	}
+
+	SanPhamRepo.timkiemdm(page, dm).then(rows => {
+		var hasMore = rows.length > constants.PRODUCTS_PER_PAGE;
+		if (hasMore) {
+			rows.pop();
+		}
+
+		var data = {
+			sanpham: rows,
+			hasMore: hasMore
+		}
+		res.json(data);
+	}).catch(err => {
+		console.log(err);
+		res.statusCode = 500;
+		res.end('View error log on console.');
 	});
 });
 
