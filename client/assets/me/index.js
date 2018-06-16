@@ -1,6 +1,7 @@
 var CUR_PAGE = 1;
 var CUR_PAGEs = 1;
 var CUR_PAGE_Search = 1;
+var CPSearchDM = 1;
 $(function () {
     HandlebarsIntl.registerWith(Handlebars);
     if(GetURLParameter("idm") === undefined) {
@@ -8,7 +9,9 @@ $(function () {
             loadSearch();
         }, loadProducts());
     } else {
-        loadProduct();
+    	$('#btnsearch').on('click', function () {
+            loadSearchDM();
+        }, loadProduct());
     }
     loadDM();
 });
@@ -92,6 +95,36 @@ var loadSearch = function () {
         });
 
         CUR_PAGE++;
+        if (data.hasMore === false) {
+            $('#btnMore').hide();
+        }
+
+        $('.loader').hide();
+    });
+};
+
+var loadSearchDM = function () {
+    $('.loader').show();
+
+    var txt = $('#txtsearch').val();
+    var dm = GetURLParameter("idm");
+
+    $.ajax({
+        url: 'http://localhost:500/sanpham/Search/' + txt + '/' + dm + '?page=' + CPSearchDM,
+        dataType: 'json',
+        timeout: 10000
+    }).done(function (data) {
+        $("#product-list").html("");
+        var source = $('#product-template').html();
+        var template = Handlebars.compile(source);
+        var html = template(data.sanpham);
+        $('#product-list').append(html);
+
+        $('#product-list div[style]').fadeIn(200, function () {
+            $(this).removeAttr('style');
+        });
+
+        CPSearchDM++;
         if (data.hasMore === false) {
             $('#btnMore').hide();
         }

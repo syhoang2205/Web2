@@ -114,21 +114,36 @@ router.get('/Searchs/:dm', (req, res) => {
 	});
 });
 
-router.get('/Search/:text/:madm', (req, res) => {
-	var text = req.params.text;
-	var madm = req.params.madm;
+router.get('/Search/:txts/:mdm', (req, res) => {
+	var page = 1;
+	var txt = req.params.txts;
+	var dm = req.params.mdm;
 
-	SanPhamRepo.timkiem(text,madm).then(rows => {
-		if (rows.length > 0) {
-			res.json(rows);
-		} else {
-			res.statusCode = 204;
-			res.end();
+	if (isNaN(dm)) {
+		res.statusCode = 400;
+		res.end();
+		return;
+	}
+
+	if (req.query.page) {
+		page = +req.query.page;
+	}
+
+	SanPhamRepo.timkiem(page, txt, dm).then(rows => {
+		var hasMore = rows.length > constants.PRODUCTS_PER_PAGE;
+		if (hasMore) {
+			rows.pop();
 		}
+
+		var data = {
+			sanpham: rows,
+			hasMore: hasMore
+		}
+		res.json(data);
 	}).catch(err => {
 		console.log(err);
 		res.statusCode = 500;
-		res.json('error');
+		res.end('View error log on console.');
 	});
 });
 
