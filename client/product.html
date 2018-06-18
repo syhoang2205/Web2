@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Trang Chủ</title>
+    <meta charset="utf-8">
+    <script src="assets/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap-3.3.7-dist/css/style.css">
+</head>
+<style>
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        height: 50%;
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">Đấu Giá Trực Tuyến</a>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a id="DK" href="register.html">Đăng Ký</a>
+                    </li>
+                    <li>
+                        <a id="DN" href="login.html">Đăng Nhập</a>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input id="txtsearch" type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button id="btnsearch" type="button" class="btn btn-default">Search</button>
+                </form>
+                <form class="navbar-form navbar-right">
+                    <button id="btnwishlist" type="button" class="btn btn-default">Wishlist</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <img src="./imgs/sp/ip8.jpg" alt="ip8">
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <h2>Điện Thoại Iphone 8</h2>
+                <div>
+                    <label>Giá Tiền Mua Ngay:</label>
+                    <a href="javascript:;" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                        Mua Ngay
+                    </a>
+                </div>
+                <br>
+                <div>
+                    <label>Giá Tiền Đấu Giá</label>
+                    <a href="javascript:;" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                        Đấu Giá
+                    </a>
+                </div>
+                <br>
+                <div>
+                    <label>Mô Tả</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="assets/handlebars.min-v4.0.11.js"></script>
+    <script src="assets/handlebars-intl-1.1.2/handlebars-intl.min.js"></script>
+    <script src="assets/me/index.js"></script>
+</body>
+
+</html>
