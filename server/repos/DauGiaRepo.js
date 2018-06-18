@@ -6,7 +6,7 @@ exports.loadAll = function() {
 }
 
 exports.load = function(id) {
-	var sql = `select * from daugia where ID = ${id}`;
+	var sql = `select * from daugia where MASP = ${id}`;
 	return db.load(sql);
 }
 

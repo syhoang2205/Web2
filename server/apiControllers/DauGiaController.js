@@ -16,15 +16,9 @@ router.get('/:id', (req, res) => {
 	if (req.params.id) {
 		var id = req.params.id;
 
-		if (isNaN(id)) {
-			res.statusCode = 400;
-			res.end();
-			return;
-		}
-
 		DauGiaRepo.load(id).then(rows => {
 			if (rows.length > 0) {
-				res.json(rows[0]);
+				res.json(rows);
 			} else {
 				res.statusCode = 204;
 				res.end();

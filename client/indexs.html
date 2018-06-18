@@ -123,31 +123,23 @@
 			<div class="thumbnail">
 				<img src="imgs/sp/{{HINH}}">
 				<div class="caption">
-					<h4>{{TENSP}}</h4>
-					<h5>{{formatNumber GIAKHOIDIEM}}</h5>
+					<div id="demo{{ID}}"></div>
 					<p>
-						<a href="product.html" class="btn btn-primary" data-toggle="modal" data-target="#sp-modal{{ID}}">
+						<a href="product.html?id={{ID}}" class="btn btn-primary">
 							<span class="glyphicon glyphicon-eye-open"></span>
-							Details
+							{{TENSP}}
 						</a>
-						<a href="javascript:;" class="btn btn-danger">
+						<button id="btnADD" class="btn btn-danger">
 							<span class="glyphicon glyphicon-shopping-cart"></span>
-							Add
-						</a>
+							Đấu Giá
+						</button>
 					</p>
-				</div>
-			</div>
-		</div>
-		<div class="modal fade" id="sp-modal{{ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	    	<div class="modal-dialog">
-				<div class="loginmodal-container">
-					<img src="imgs/sp/{{HINH}}" height="300" width="300">
-					<form>
-						<h1>{{TENSP}}</h1>
-						<h5>Giá Đấu Giá: {{formatNumber GIAKHOIDIEM}}</h5>
-						<h5>Giá Bán: {{formatNumber GIABAN}}</h5>
-						<h5>Mô Tả: {{MOTA}}</h5>
-					</form>
+					<h4>Giá: {{formatNumber GIAKHOIDIEM}} vnđ</h4>
+					<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+					    <div class="input-group-addon">Giá Đấu</div>
+					    <input type="text" class="form-control" id="txtGiaDau" value="{{GIAKHOIDIEM}}">
+					    <div class="input-group-addon">vnđ</div>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -48,42 +48,24 @@
             </div>
         </div>
     </nav>
-
-
+    <div id="list"></div>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-6 col-md-6">
-                <img src="./imgs/sp/ip8.jpg" alt="ip8">
-            </div>
-            <div class="col-sm-6 col-md-6">
-                <h2>Điện Thoại Iphone 8</h2>
-                <div>
-                    <label>Giá Tiền Mua Ngay:</label>
-                    <a href="javascript:;" class="btn btn-danger">
-                        <span class="glyphicon glyphicon-shopping-cart"></span>
-                        Mua Ngay
-                    </a>
-                </div>
-                <br>
-                <div>
-                    <label>Giá Tiền Đấu Giá</label>
-                    <a href="javascript:;" class="btn btn-danger">
-                        <span class="glyphicon glyphicon-shopping-cart"></span>
-                        Đấu Giá
-                    </a>
-                </div>
-                <br>
-                <div>
-                    <label>Mô Tả</label>
-                </div>
-            </div>
-        </div>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Họ Tên</th>
+                    <th scope="col">Giá</th>
+                    <th scope="col">Ngày</th>
+                </tr>
+            </thead>
+            <tbody id="listb"></tbody>
+        </table>
     </div>
 
     <script src="assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="assets/handlebars.min-v4.0.11.js"></script>
     <script src="assets/handlebars-intl-1.1.2/handlebars-intl.min.js"></script>
-    <script src="assets/me/index.js"></script>
+    <script src="assets/me/product.js"></script>
 </body>
 
 </html>
