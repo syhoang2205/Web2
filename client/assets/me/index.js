@@ -3,6 +3,7 @@ var CUR_PAGEs = 1;
 var CUR_PAGE_Search = 1;
 var CPSearchDM = 1;
 $(function () {
+	$("#b0").hide();
     HandlebarsIntl.registerWith(Handlebars);
     if(GetURLParameter("idm") === undefined) {
         $('#btnsearch').on('click', function () {
@@ -31,9 +32,9 @@ var loadProducts = function () {
         var source = $('#product-template').html();
         var template = Handlebars.compile(source);
         var html = template(data.sanpham); 
-        $('#product-list').append(html);
+        $('#product-list1').append(html);
 
-        $('#product-list div[style]').fadeIn(200, function () {
+        $('#product-list1 div[style]').fadeIn(200, function () {
             $(this).removeAttr('style');
         });
 
@@ -48,6 +49,10 @@ var loadProducts = function () {
 
 var loadProduct = function () {
     $('.loader').show();
+    $("#b0").show();
+	$("#b1").remove();
+    $("#b2").remove();
+    $("#b3").remove();
 
     var dm = GetURLParameter("idm");
 
@@ -76,6 +81,10 @@ var loadProduct = function () {
 
 var loadSearch = function () {
     $('.loader').show();
+    $("#b0").show();
+    $("#b1").remove();
+    $("#b2").remove();
+    $("#b3").remove();
 
     var dm = $('#txtsearch').val();
 

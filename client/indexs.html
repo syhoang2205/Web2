@@ -42,7 +42,7 @@
 				</ul>
 				<form class="navbar-form navbar-right" role="search">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
+						<input id="txtsearch" type="text" class="form-control" placeholder="Search">
 					</div>
 					<button id="btnsearch" type="button" class="btn btn-default">Search</button>
 				</form>
@@ -62,7 +62,7 @@
 					<div class="panel-heading" id="list"></div>
 				</div>
 			</div>
-			<div class="col-sm-10 col-md-10">
+			<div id="b0" class="col-sm-10 col-md-10">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">Sản Phẩm</h3>
@@ -83,9 +83,38 @@
 					</div>
 				</div>
 			</div>
+			<div id="b1" class="col-sm-10 col-md-10">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">5 Sản Phẩm Có Giá Cao Nhất</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row" id="product-list1"></div>
+					</div>
+				</div>
+			</div>
+			<div id="b2" class="col-sm-10 col-md-10">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">5 Sản Phẩm Nhiều Lượt Đấu Giá</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row" id="product-list2"></div>
+					</div>
+				</div>
+			</div>
+			<div id="b3" class="col-sm-10 col-md-10">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">5 Sản Phẩm Gần Kết Thúc</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row" id="product-list3"></div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-
 	<div class="modal fade" id="info-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     	<div class="modal-dialog">
 			<div class="loginmodal-container">
@@ -121,24 +150,22 @@
 
 	<script id="product-template" type="text/x-handlebars-template">
 		{{#each this}}
-		<div class="col-sm-3 col-md-3" style="display: none">
+		<div class="col-sm-2 col-md-2" style="display: none">
 			<div class="thumbnail">
-				<img src="http://localhost:500/{{HINH}}">
 				<div class="caption">
 					<div id="demo{{ID}}"></div>
 					<p>
 						<a href="product.html?id={{ID}}" class="btn btn-primary">
-							<span class="glyphicon glyphicon-eye-open"></span>
-							{{TENSP}}
+							<img src="http://localhost:500/{{HINH}}">
 						</a>
+						<h4>{{TENSP}}</h4>
+						<h6>Giá: {{formatNumber GIAKHOIDIEM}} vnđ</h6>
 						<button id="btnADD" class="btn btn-danger">
 							<span class="glyphicon glyphicon-shopping-cart"></span>
 							Đấu Giá
 						</button>
 					</p>
-					<h4>Giá: {{formatNumber GIAKHOIDIEM}} vnđ</h4>
-					<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-					    <div class="input-group-addon">Giá Đấu</div>
+					<div class="input-group mb-1 mr-sm-1 mb-sm-0">
 					    <input type="text" class="form-control" id="txtGiaDau" value="{{GIAKHOIDIEM}}">
 					    <div class="input-group-addon">vnđ</div>
 					</div>
