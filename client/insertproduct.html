@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <script src="assets/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" type="text/css" href="assets/bootstrap-3.3.7-dist/css/style.css"> -->
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap-3.3.7-dist/css/style.css">
     <script>
         function load() {
             document.getElementById('user').innerHTML = sessionStorage.getItem('user');
@@ -24,13 +24,9 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 
-        /* define a fixed width for the entire menu */
-
         .navigation {
             width: 300px;
         }
-
-        /* reset our lists to remove bullet points and padding */
 
         .mainmenu,
         .submenu {
@@ -38,8 +34,6 @@
             padding: 0;
             margin: 0;
         }
-
-        /* make ALL links (main and submenu) have padding and background color */
 
         .mainmenu a {
             display: block;
@@ -51,46 +45,26 @@
             border-radius: 4px;
         }
 
-        /* add hover behaviour */
-
         .mainmenu a:hover {
             background-color: #337ab7;
         }
-
-
-        /* when hovering over a .mainmenu item,
-display the submenu inside it.
-we're changing the submenu's max-height from 0 to 200px;
-*/
 
         .mainmenu li:hover .submenu {
             display: block;
             max-height: 200px;
         }
 
-        /*
-we now overwrite the background-color for .submenu links only.
-CSS reads down the page, so code at the bottom will overwrite the code at the top.
-*/
-
         .submenu a {
             background-color: #337ab7;
         }
-
-        /* hover behaviour for links inside .submenu */
 
         .submenu a:hover {
             background-color: #fff;
         }
 
-        /* this is the initial state of all submenus.
-we set it to max-height: 0, and hide the overflowed content.
-*/
-
         .submenu {
             overflow: hidden;
             max-height: 0;
-            /* -webkit-transition: all 0.5s ease-out; */
         }
 
         input {
@@ -165,20 +139,18 @@ we set it to max-height: 0, and hide the overflowed content.
             </div>
             <div class="col-sm-6 col-md-6">
                 <h1>Thêm Sản Phẩm Bán</h1>
-                <form action="">
+                <form action="http://localhost:500/upload" method="Post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Tên Sản Phẩm" required>
-                        <input type="number" class="form-control" placeholder="Giá Đấu" required>
-                        <input type="number" class="form-control" placeholder="Giá Mua Ngay" required>
-                        <select style="margin-bottom: 10px">
-                            <option>Loại Sản Phẩm</option>
-                            <option value="laptop">Laptop</option>
-                            <option value="mobile">Mobile</option>
-                        </select>
-                        <textarea class="form-control" rows="5" placeholder="Mô Tả Sản Phẩm" required></textarea>
+                        <input type="text" id="txtTenSP" class="form-control" placeholder="Tên Sản Phẩm" required>
+                        <input type="number" id="txtGiaKD" class="form-control" placeholder="Giá Đấu" required>
+                        <input type="number" id="txtGiaB" class="form-control" placeholder="Giá Mua Ngay" required>
+                        <div class="form-group">
+                            Danh Mục: <div id="list"></div>
+                        </div>
+                        <textarea class="form-control" id="txtMota" rows="5" placeholder="Mô Tả Sản Phẩm" required></textarea>
                     </div>
-                    <input type="file" id="image" />
-                    <button type="button" id="btnAddSanPham" class="btn btn-primary btn-block">Đăng Sản Phẩm</button>
+                    <input type="file" id="file" name="file"/>
+                    <button type="submit" id="btnAddSanPham" class="btn btn-primary btn-block">Đăng Sản Phẩm</button>
                 </form>
 
             </div>
@@ -209,7 +181,7 @@ we set it to max-height: 0, and hide the overflowed content.
     <script src="assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="assets/handlebars.min-v4.0.11.js"></script>
     <script src="assets/handlebars-intl-1.1.2/handlebars-intl.min.js"></script>
-    <script src="assets/me/index.js"></script>
+    <script src="assets/me/insertproduct.js"></script>
     <script src="assets/bootstrap-3.3.7-dist/css/style.css"></script>
 </body>
 

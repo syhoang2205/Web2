@@ -175,14 +175,13 @@ router.post('/', (req, res) => {
 	SanPhamRepo.add(req.body)
 		.then(insertId => {
 			var poco = {
-				ID: insertId,
+				NGUOIBAN: req.body.NGUOIBAN,
 				TENSP: req.body.TENSP,
 				MADM: req.body.MADM,
 				GIAKHOIDIEM: req.body.GIAKHOIDIEM,
 				GIABAN: req.body.GIABAN,
 				MOTA: req.body.MOTA,
-				HINH: req.body.HINH,
-				NGUOIBAN: req.body.NGUOIBAN
+				HINH: req.body.HINH
 			};
 			res.statusCode = 201;
 			res.json(poco);

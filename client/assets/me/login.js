@@ -27,6 +27,7 @@ $('#btnLogin').on('click', function() {
                 timeout: 10000
             }).done(function(data) {
                 $.each(data, function(idx, item) {
+                    sessionStorage.setItem('id', item.ID);
                     sessionStorage.setItem('user', item.HOTEN);
                     sessionStorage.setItem('mail', item.MAIL);
                     sessionStorage.setItem('diachi', item.DIACHI);

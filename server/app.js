@@ -24,13 +24,13 @@ app.use(bodyParser.urlencoded({
 }));
 
 var staticDir = express.static(
-    path.resolve(__dirname, 'public')
+    path.resolve(__dirname, 'upload')
 );
 app.use(staticDir);
 
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, './imgs')
+        cb(null, './upload')
     },
     filename: function(req, file, cb) {
         cb(null, file.originalname)
@@ -41,14 +41,14 @@ var upload = multer({
     storage: storage
 });
 
+app.post('/upload', upload.single("file"), function(req, res) {
+    res.json("Up done.");
+});
+
 app.get('/', (req, res) => {
     res.json({
         msg: 'ok'
     })
-});
-
-app.post('/api/upload', upload.array('photos', 3), (req, res) => {
-    res.end('upload done.');
 });
 
 app.use('/sanpham', sanphamCtrl);
