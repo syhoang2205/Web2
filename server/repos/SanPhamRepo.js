@@ -6,6 +6,11 @@ exports.loadAll = function() {
 	return db.load(sql);
 }
 
+exports.loadXN = function() {
+	var sql = `select * from sanpham where TRANGTHAI = 2`;
+	return db.load(sql);
+}
+
 exports.loadPage = function(page) {
     var offset = (page - 1) * constants.PRODUCTS_PER_PAGE;
     var sql = `select * from sanpham limit ${constants.PRODUCTS_PER_PAGE + 1} offset ${offset}`;
@@ -36,7 +41,7 @@ exports.load = function(id) {
 }
 
 exports.add = function(poco) {
-	var sql = `insert into sanpham(TENSP, MADM, GIAKHOIDIEM, GIABAN, MOTA, NGAYKT, HINH, NGUOIBAN) values('${poco.TENSP}', '${poco.MADM}','${poco.GIAKHOIDIEM}','${poco.GIABAN}','${poco.MOTA}',DATE_ADD(NOW(), INTERVAL 7 DAY),'${poco.HINH}','${poco.NGUOIBAN}')`;
+	var sql = `insert into sanpham(NGUOIBAN, TENSP, MADM, GIAKHOIDIEM, GIABAN, MOTA, NGAYKT, HINH) values('${poco.NGUOIBAN}', '${poco.TENSP}', '${poco.MADM}','${poco.GIAKHOIDIEM}','${poco.GIABAN}','${poco.MOTA}',DATE_ADD(NOW(), INTERVAL 7 DAY),'${poco.HINH}')`;
 	return db.insert(sql);
 }
 

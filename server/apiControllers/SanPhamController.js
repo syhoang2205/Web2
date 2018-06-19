@@ -28,6 +28,20 @@ router.get('/', (req, res) => {
 	});
 });
 
+router.get('/XacNhan', (req, res) => {
+	SanPhamRepo.loadXN().then(rows => {
+		if (rows.length > 0) {
+			res.json(rows);
+		} else {
+			res.statusCode = 204;
+			res.end();
+		}
+	}).catch(err => {
+		console.log(err);
+		res.statusCode = 500;
+		res.json('error');
+	});
+});
 
 router.get('/:id', (req, res) => {
 	if (req.params.id) {
