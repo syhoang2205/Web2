@@ -7,7 +7,6 @@ var express = require('express'),
 
 var sanphamCtrl = require('./apiControllers/SanPhamController');
 var danhmucCtrl = require('./apiControllers/DanhMucController');
-var tinhtrangCtrl = require('./apiControllers/TinhTrangController');
 var taikhoanCtrl = require('./apiControllers/TaiKhoanController');
 var loaitkCtrl = require('./apiControllers/LoaiTKController');
 var ketquadgCtrl = require('./apiControllers/KetQuaDGController');
@@ -53,7 +52,6 @@ app.get('/', (req, res) => {
 
 app.use('/sanpham', sanphamCtrl);
 app.use('/danhmuc', danhmucCtrl);
-app.use('/tinhtrang', tinhtrangCtrl);
 app.use('/taikhoan', taikhoanCtrl);
 app.use('/loaitk', loaitkCtrl);
 app.use('/ketquadg', ketquadgCtrl);

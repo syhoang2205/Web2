@@ -25,13 +25,9 @@
 			font-family: Arial, Helvetica, sans-serif;
 		}
 
-		/* define a fixed width for the entire menu */
-
 		.navigation {
 			width: 300px;
 		}
-
-		/* reset our lists to remove bullet points and padding */
 
 		.mainmenu,
 		.submenu {
@@ -39,9 +35,6 @@
 			padding: 0;
 			margin: 0;
 		}
-
-		/* make ALL links (main and submenu) have padding and background color */
-
 		.mainmenu a {
 			display: block;
 			background-color: #fff;
@@ -52,46 +45,26 @@
 			border-radius: 4px;
 		}
 
-		/* add hover behaviour */
-
 		.mainmenu a:hover {
 			background-color: #337ab7;
 		}
-
-
-		/* when hovering over a .mainmenu item,
-display the submenu inside it.
-we're changing the submenu's max-height from 0 to 200px;
-*/
 
 		.mainmenu li:hover .submenu {
 			display: block;
 			max-height: 200px;
 		}
 
-		/*
-we now overwrite the background-color for .submenu links only.
-CSS reads down the page, so code at the bottom will overwrite the code at the top.
-*/
-
 		.submenu a {
 			background-color: #337ab7;
 		}
-
-		/* hover behaviour for links inside .submenu */
 
 		.submenu a:hover {
 			background-color: #fff;
 		}
 
-		/* this is the initial state of all submenus.
-we set it to max-height: 0, and hide the overflowed content.
-*/
-
 		.submenu {
 			overflow: hidden;
 			max-height: 0;
-			/* -webkit-transition: all 0.5s ease-out; */
 		}
 	</style>
 </head>
@@ -111,13 +84,7 @@ we set it to max-height: 0, and hide the overflowed content.
 						</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a href="#" data-toggle="modal" data-target="#info-modal">Cá Nhân</a>
-							</li>
-							<li>
-								<a href="#" data-toggle="modal" data-target="#repass-modal">Đổi Mật Khẩu</a>
-							</li>
-							<li>
-								<a href="#">Bán/Mua Hàng</a>
+								<a href="salebuy.html">Cá Nhân</a>
 							</li>
 							<li>
 								<a href="index.html" onclick="logout()">Đăng Suất</a>
@@ -125,13 +92,6 @@ we set it to max-height: 0, and hide the overflowed content.
 						</ul>
 					</li>
 				</ul>
-				<form class="navbar-form navbar-right" role="search">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
-					</div>
-					<button id="btnsearch" type="submit" class="btn btn-default">Search</button>
-					<button id="btnwishlist" type="button" class="btn btn-default">Wishlist</button>
-				</form>
 			</div>
 		</div>
 	</nav>
@@ -141,16 +101,13 @@ we set it to max-height: 0, and hide the overflowed content.
 				<nav class="navigation">
 					<ul class="mainmenu">
 						<li>
-							<a style="color: #fff; background-color: #337ab7">Quản Trị</a>
-						</li>
-						<li>
-							<a>Sản Phẩm</a>
+							<a href="salebuy.html">Profile</a>
 							<ul class="submenu">
 								<li>
 									<a href="insertproduct.html">Thêm Sản Phẩm</a>
 								</li>
 								<li>
-									<a>Sản Phẩm Bán</a>
+									<a href="SanPhamBan.html">Sản Phẩm Bán</a>
 								</li>
 								<li>
 									<a href="SanPhamMua.html">Sản Phẩm Mua</a>
@@ -163,7 +120,7 @@ we set it to max-height: 0, and hide the overflowed content.
 			<div class="col-sm-9 col-md-9">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h3 class="panel-title">Sản Phẩm</h3>
+						<h3 class="panel-title">Sản Phẩm Bán</h3>
 					</div>
 					<div class="panel-body">
 
@@ -172,48 +129,6 @@ we set it to max-height: 0, and hide the overflowed content.
 			</div>
 		</div>
 	</div>
-
-	<div class="modal fade" id="info-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="loginmodal-container">
-				<h1>Thông Tin Cá Nhân</h1>
-				<br>
-				<form>
-					<label>Họ Tên: </label>
-					<span id="hoten"></span>
-					<h1></h1>
-					<label>Mail: </label>
-					<span id="mail"></span>
-					<h1></h1>
-					<label>Địa Chỉ: </label>
-					<span id="diachi"></span>
-					<h1></h1>
-				</form>
-			</div>
-		</div>
-	</div>
-
-	<div class="modal fade" id="repass-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="loginmodal-container">
-				<h1>Đổi Mật Khẩu</h1>
-				<br>
-				<form>
-					<label>Mật Khẩu Cũ: </label>
-					<input type="text" name="oldpass">
-					<h1></h1>
-					<label>Mật Khẩu Mới: </label>
-					<input type="text" name="newpass">
-					<h1></h1>
-					<label>Xác Nhận MK: </label>
-					<input type="text" name="renewpass">
-					<h1></h1>
-				</form>
-				<button class="loginmodal-container">Change Password</button>
-			</div>
-		</div>
-	</div>
-
 	<script src="assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	<script src="assets/handlebars.min-v4.0.11.js"></script>
 	<script src="assets/handlebars-intl-1.1.2/handlebars-intl.min.js"></script>

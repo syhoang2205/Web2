@@ -2,16 +2,6 @@ var express = require('express');
 var KetQuaDGRepo = require('../repos/KetQuaDGRepo');
 var router = express.Router();
 
-router.get('/', (req, res) => {
-    KetQuaDGRepo.loadAll().then(rows => {
-        res.json(rows);
-    }).catch(err => {
-        console.log(err);
-        res.statusCode = 500;
-        res.end('View error log on console.');
-    });
-});
-
 router.get('/:id', (req, res) => {
 	if (req.params.id) {
 		var id = req.params.id;
@@ -45,7 +35,6 @@ router.post('/', (req, res) => {
 		.then(insertId => {
 			var poco = {
 				MASP: req.body.MASP,
-				MAIL: req.body.MAIL,
 				GIA: req.body.GIA,
 				MATK: req.body.MATK
 			};

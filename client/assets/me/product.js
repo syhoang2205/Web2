@@ -1,6 +1,6 @@
 $(function () {
-    if (sessionStorage.getItem('user') !== "undefined") {
-    	if (sessionStorage.getItem('user') !== "null") {
+    if (sessionStorage.getItem('user') !== "null") {
+    	if (sessionStorage.getItem('user') !== "undefined") {
     		$("#DK").remove();
     		$("#DN").remove();
              document.getElementById("page").href="indexs.html";
