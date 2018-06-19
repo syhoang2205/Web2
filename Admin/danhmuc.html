@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Trang Chủ</title>
+	<meta charset="utf-8">
+	<script src="assets/jquery-3.1.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/bootstrap-3.3.7-dist/css/styles.css">
+	<script>
+		function load() {
+			document.getElementById('user').innerHTML =  sessionStorage.getItem('user');
+			document.getElementById('hoten').innerHTML =  sessionStorage.getItem('user');
+			document.getElementById('mail').innerHTML =  sessionStorage.getItem('mail');
+			document.getElementById('diachi').innerHTML =  sessionStorage.getItem('diachi');
+		}
+		function logout() {
+			sessionStorage.setItem('mail', null);
+		}
+	</script>
+</head>
+
+<body onload="load()">
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="admin.html">Đấu Giá Trực Tuyến</a>
+			</div>
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="danhmuc.html" class="btn">Danh Mục</a></li>
+					<li><a href="sanpham.html" class="btn">Sản Phẩm</a></li>
+					<li><a href="nguoidung.html" class="btn">Người Dùng</a></li>
+					<li class="dropdown">
+			            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="user"></span><b class="caret"></b></a>
+			            <ul class="dropdown-menu">
+			                <li><a href="#" data-toggle="modal" data-target="#info-modal">Cá Nhân</a></li>
+			                <li><a href="index.html" onclick="logout()">Đăng Suất</a></li>
+			            </ul>
+			        </li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="modal fade" id="info-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    	<div class="modal-dialog">
+			<div class="loginmodal-container">
+				<h1>Thông Tin Cá Nhân</h1><br>
+				<form>
+					<label>Họ Tên: </label> <span id="hoten"></span>
+					<h1></h1>
+					<label>Mail: </label> <span id="mail"></span>
+					<h1></h1>
+					<label>Địa Chỉ: </label> <span id="diachi"></span>
+					<h1></h1>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal-dialog">
+		<form action="#">
+			TÊN DANH MỤC: <input id="TENDM" type="text"/>
+			<button type="button" id="btnAdDM">Submit</button>
+		</form>
+	</div>
+	<div class="container-fluid">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">TÊN DANH MỤC</th>
+                    <th scope="col" width="100px">XÓA</th>
+                    <th scope="col" width="100px">SỬA</th>
+                </tr>
+            </thead>
+            <tbody id="listb"></tbody>
+        </table>
+    </div>
+
+	<script src="assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<script src="assets/handlebars.min-v4.0.11.js"></script>
+	<script src="assets/handlebars-intl-1.1.2/handlebars-intl.min.js"></script>
+	<script src="assets/me/danhmuc.js"></script>
+</body>
+
+</html>

@@ -8,7 +8,7 @@ $('#btnLogin').on('click', function() {
     var jsonToPost = JSON.stringify(dataToPost);
 
     $.ajax({
-        url: 'http://localhost:500/taikhoan/login',
+        url: 'http://localhost:500/taikhoan/Login',
         type: 'POST',
         dataType: 'json',
         timeout: 10000,

@@ -4,6 +4,16 @@ var TaiKhoanRepo = require('../repos/TaiKhoanRepo');
 
 var router = express.Router();
 
+router.get('/', (req, res) => {
+	TaiKhoanRepo.loadALL().then(rows => {
+        res.json(rows);
+    }).catch(err => {
+        console.log(err);
+        res.statusCode = 500;
+        res.end('View error log on console.');
+    });
+});
+
 router.get('/:mail', (req, res) => {
 	var mail = req.params.mail;
 

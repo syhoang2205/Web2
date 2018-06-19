@@ -4,6 +4,16 @@ var SanPhamRepo = require('../repos/SanPhamRepo'),
 
 var router = express.Router();
 
+router.get('/LoadAll', (req, res) => {
+	SanPhamRepo.loadAll().then(rows => {
+        res.json(rows);
+    }).catch(err => {
+        console.log(err);
+        res.statusCode = 500;
+        res.end('View error log on console.');
+    });
+});
+
 router.get('/', (req, res) => {
 	var page = 1;
 	if (req.query.page) {
@@ -206,6 +216,24 @@ router.post('/:id', (req, res) => {
 				res.statusCode = 500;
 				res.end();
 			});
+	}
+});
+
+router.post('/XacNhan/:id', (req, res) => {
+	if (req.params.id) {
+		var id = req.params.id;
+		SanPhamRepo.updateSP(id).then(rows => {
+			if (rows.length > 0) {
+				res.json(rows);
+			} else {
+				res.statusCode = 204;
+				res.end();
+			}
+		}).catch(err => {
+			console.log(err);
+			res.statusCode = 500;
+			res.json('error');
+		});
 	}
 });
 

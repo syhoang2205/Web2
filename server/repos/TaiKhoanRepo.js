@@ -6,9 +6,14 @@ exports.load = function(mail) {
 	return db.load(sql);
 }
 
+exports.loadALL = function(mail) {
+	var sql = `select * from taikhoan where LOAITK = 2`;
+	return db.load(sql);
+}
+
 exports.login = function(poco) {
 	var md5_password = md5(poco.PASSWORD);
-	var sql = `select * from taikhoan where TINHTRANG = 1 and loaiTK != 1 and MAIL like '${poco.MAIL}' and PASSWORD like '${md5_password}'`;
+	var sql = `select * from taikhoan where TINHTRANG = 1 and loaiTK = 2 and MAIL like '${poco.MAIL}' and PASSWORD like '${md5_password}'`;
 	return db.load(sql);
 }
 
