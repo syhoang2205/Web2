@@ -1,4 +1,16 @@
 $(function () {
+    if (sessionStorage.getItem('user') !== "undefined") {
+    	if (sessionStorage.getItem('user') !== "null") {
+    		$("#DK").remove();
+    		$("#DN").remove();
+             document.getElementById("page").href="indexs.html";
+    	} else {
+    		$("#DG").remove();
+    	}
+    } else {
+        $("#DG").remove();
+    }
+
 	loadProduct();
 	loadtb();
 });
@@ -16,7 +28,7 @@ var loadProduct = function () {
             '<div class="container-fluid">' +
 	            '<div class="row">' +
 	                '<div class="col-sm-6 col-md-6">' +
-	                    '<img src="./imgs/sp/' + item.HINH + '" alt="ip8">' +
+	                    '<img src="http://localhost:500/' + item.HINH + '">' +
 	                '</div>' +
 	                '<div class="col-sm-6 col-md-6">' +
 	                    '<h2>' + item.TENSP +'</h2>' +
