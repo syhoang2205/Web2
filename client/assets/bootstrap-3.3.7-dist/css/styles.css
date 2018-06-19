@@ -1,0 +1,47 @@
+html,
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		.navigation {
+			width: 300px;
+		}
+
+		.mainmenu,
+		.submenu {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		.mainmenu a {
+			display: block;
+			background-color: #fff;
+			text-decoration: none;
+			padding: 10px;
+			color: #000;
+			border: solid 1px #337ab7;
+			border-radius: 4px;
+		}
+
+		.mainmenu a:hover {
+			background-color: #337ab7;
+		}
+
+		.mainmenu li:hover .submenu {
+			display: block;
+			max-height: 200px;
+		}
+
+		.submenu a {
+			background-color: #337ab7;
+		}
+
+		.submenu a:hover {
+			background-color: #fff;
+		}
+
+		.submenu {
+			overflow: hidden;
+			max-height: 0;
+		}

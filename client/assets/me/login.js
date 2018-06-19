@@ -31,7 +31,6 @@ $('#btnLogin').on('click', function() {
                     sessionStorage.setItem('user', item.HOTEN);
                     sessionStorage.setItem('mail', item.MAIL);
                     sessionStorage.setItem('diachi', item.DIACHI);
-                    sessionStorage.setItem('ngaytg', item.createdAt);
                 });
             });
         } else {
