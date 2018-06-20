@@ -11,6 +11,9 @@
 	<script>
 		function load() {
 			document.getElementById('user').innerHTML = sessionStorage.getItem('user');
+			document.getElementById('hoten').innerHTML = sessionStorage.getItem('user');
+			document.getElementById('mail').innerHTML = sessionStorage.getItem('mail');
+			document.getElementById('diachi').innerHTML = sessionStorage.getItem('diachi');
 		}
 		function logout() {
 			sessionStorage.setItem('mail', null);
@@ -68,6 +71,27 @@
 					</ul>
 				</nav>
 			</div>
+			<div class="col-sm-6 col-md-6">
+				<h1>Thông Tin</h1>
+				<table border="4">
+					<tr>
+						<th>
+							<h3> Họ Tên: <span id="hoten"></span> </h3>
+							<h3> Email: <span id="mail"></span> </h3>
+							<h3> Địa Chỉ: <span id="diachi"></span> </h3>
+						</th>
+					</tr>
+				</table>
+				<h1>Đổi Mật Khẩu</h1>
+				<form action="">
+					<div class="form-group">
+						<input type="password" id="txtMatKhau" class="form-control" placeholder="Mật Khẩu" required>
+						<input type="password" id="txtNhapLaiMatKhau" class="form-control" placeholder="Nhập Lại Mật Khẩu" required>
+					</div>
+					<button type="submit" id="btnAddSanPham" class="btn btn-primary btn-block">Xác Nhận</button>
+				</form>
+			</div>
+			<div class="col-sm-3 col-md-3"></div>
 		</div>
 	</div>
 

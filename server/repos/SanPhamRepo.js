@@ -46,7 +46,7 @@ exports.add = function(poco) {
 }
 
 exports.update = function(poco, id) {
-	var sql = `update sanpham set TENSP='${poco.TENSP}',MADM='${poco.MADM}',GIAKHOIDIEM='${poco.GIAKHOIDIEM}',GIABAN='${poco.GIABAN}',MOTA='${poco.MOTA}',HINH='${poco.HINH}',NGUOIBAN='${poco.NGUOIBAN}' Where ID = ${id}`;
+	var sql = `update sanpham set GIAKHOIDIEM='${poco.GIAKHOIDIEM}' Where ID = ${id}`;
 	return db.load(sql);
 }
 

@@ -57,15 +57,34 @@ router.get('/:id', (req, res) => {
 	if (req.params.id) {
 		var id = req.params.id;
 
-		if (isNaN(id)) {
-			res.statusCode = 400;
-			res.end();
-			return;
-		}
+		SanPhamRepo.load(id).then(rows => {
+			if (rows.length > 0) {
+				var data = {
+		            sanpham: rows
+		        }
+        		res.json(data);
+			} else {
+				res.statusCode = 204;
+				res.end();
+			}
+		}).catch(err => {
+			console.log(err);
+			res.statusCode = 500;
+			res.json('error');
+		});
+	} else {
+		res.statusCode = 400;
+		res.json('error');
+	}
+});
+
+router.get('/tien/:id', (req, res) => {
+	if (req.params.id) {
+		var id = req.params.id;
 
 		SanPhamRepo.load(id).then(rows => {
 			if (rows.length > 0) {
-				res.json(rows);
+        		res.json(rows);
 			} else {
 				res.statusCode = 204;
 				res.end();
@@ -200,13 +219,7 @@ router.post('/:id', (req, res) => {
 		SanPhamRepo.update(req.body, id).then(insertId => {
 			var poco = {
 				ID: id,
-				TENSP: req.body.TENSP,
-				MADM: req.body.MADM,
-				GIAKHOIDIEM: req.body.GIAKHOIDIEM,
-				GIABAN: req.body.GIABAN,
-				MOTA: req.body.MOTA,
-				HINH: req.body.HINH,
-				NGUOIBAN: req.body.NGUOIBAN
+				GIAKHOIDIEM: req.body.GIAKHOIDIEM
 			};
 			res.statusCode = 201;
 			res.json(poco);

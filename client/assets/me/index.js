@@ -5,6 +5,7 @@ var CPSearchDM = 1;
 
 $(function () {
 	$("#b0").hide();
+	$("#b4").hide();
     HandlebarsIntl.registerWith(Handlebars);
     if(GetURLParameter("idm") === undefined) {
         $('#btnsearch').on('click', function () {
@@ -19,14 +20,41 @@ $(function () {
     }
     loadtime();
     loadDM();
+    loadmua();
+});
+
+$('#btnwishlist').on('click', function () {
+	if (sessionStorage.getItem('user') === "null") {
+		alert("Please Login!");
+	} else {
+		$('.loader').show();
+	    $("#b0").remove();
+	    $("#b1").remove();
+	    $("#b2").remove();
+	    $("#b3").remove();
+	    $("#b4").show();
+
+	    $.ajax({
+	        url: 'http://localhost:500/trangchu/wishlist/' + sessionStorage.getItem('id'),
+	        dataType: 'json',
+	        timeout: 10000
+	    }).done(function (data) {
+	        var source = $('#product-template').html();
+	        var template = Handlebars.compile(source);
+	        var html = template(data.sanpham); 
+	        $('#product-list4').append(html);
+	        
+	        $('#product-list4 div[style]').fadeIn(200, function () {
+	            $(this).removeAttr('style');
+	        });
+
+	        $('.loader').hide();
+	    });
+	}
 });
 
 $('#btnMore').on('click', function () {
-
-});
-
-$('#btnMore').on('click', function () {
-    loadProducts();
+    loadProduct();
 });
 
 var loadProducts = function () {
@@ -226,7 +254,6 @@ function GetURLParameter(sParam) {
 }
 function timedown(id, sParam) {
     var name = "demo" + id;
-    var namebt = "btndg" + id;
     var countDownDate = new Date(sParam).getTime();
     var x = setInterval(function() {
         var now = new Date().getTime();
@@ -238,14 +265,42 @@ function timedown(id, sParam) {
         document.getElementById(name).innerHTML = days + ":" + hours + ":" + minutes + ":" + seconds;
         if (distance < 0) {
             clearInterval(x);
-            document.getElementById(namebt).disabled = true;
+            sessionStorage.setItem('DONGHO' + id, "KETTHUC");
             document.getElementById(name).innerHTML = "Kết Thúc";
+
+            $.ajax({
+		        url: 'http://localhost:500/trangchu/Win/' + id,
+		        dataType: 'json',
+		        timeout: 10000
+		    }).done(function(data) {
+		        $.each(data, function(idx, item) {
+		        	var body = {
+	                    MASP: id,
+	                    GIA: item.GIA,
+	                    MATK: item.NGDG
+	                };
+
+	                $.ajax({
+	                    url: 'http://localhost:500/ketquadg/',
+	                    dataType: 'json',
+	                    timeout: 10000,
+	                    type: 'POST',
+	                    contentType: 'application/json',
+	                    data: JSON.stringify(body)
+	                }).done(function(data) {
+	                }).fail(function(xhr, textStatus, error) {
+	                    console.log(textStatus);
+	                    console.log(error);
+	                    console.log(xhr);
+	                });
+		        });
+		    });
+
         }
     }, 1000);
 }
 function timedown1(id, sParam) {
     var name = "demo2" + id;
-    var namebt = "btndg2" + id;
     var countDownDate = new Date(sParam).getTime();
     var x = setInterval(function() {
         var now = new Date().getTime();
@@ -257,14 +312,16 @@ function timedown1(id, sParam) {
         document.getElementById(name).innerHTML = days + ":" + hours + ":" + minutes + ":" + seconds;
         if (distance < 0) {
             clearInterval(x);
-            document.getElementById(namebt).disabled = true;
+            sessionStorage.setItem('DONGHO' + id, "KETTHUC");
             document.getElementById(name).innerHTML = "Kết Thúc";
+
+
+
         }
     }, 1000);
 }
 function timedown2(id, sParam) {
     var name = "demo3" + id;
-    var namebt = "btndg3" + id;
     var countDownDate = new Date(sParam).getTime();
     var x = setInterval(function() {
         var now = new Date().getTime();
@@ -276,8 +333,20 @@ function timedown2(id, sParam) {
         document.getElementById(name).innerHTML = days + ":" + hours + ":" + minutes + ":" + seconds;
         if (distance < 0) {
             clearInterval(x);
-            document.getElementById(namebt).disabled = true;
+            sessionStorage.setItem('DONGHO' + id, "KETTHUC");
             document.getElementById(name).innerHTML = "Kết Thúc";
         }
     }, 1000);
 }
+
+var loadmua = function (id) {
+    $.ajax({
+        url: 'http://localhost:500/ketquadg/',
+        dataType: 'json',
+        timeout: 10000
+    }).done(function(data) {
+        $.each(data, function(idx, item) {
+            sessionStorage.setItem('BAN' + item.MASP, "ROI");
+        });
+    });
+};

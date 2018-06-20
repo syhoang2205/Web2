@@ -10,9 +10,122 @@ $(function () {
     } else {
         $("#DG").remove();
     }
-
+    if (sessionStorage.getItem('DONGHO' + GetURLParameter("id")) === "KETTHUC") {
+        document.getElementById("btndaugia").disabled = true;
+        document.getElementById("btnmua").disabled = true;
+    }
+    if (sessionStorage.getItem('BAN' + GetURLParameter("id")) === "ROI") {
+        document.getElementById("btndaugia").disabled = true;
+        document.getElementById("btnmua").disabled = true;
+    }
 	loadProduct();
 	loadtb();
+});
+
+$('#btndaugia').on('click', function () {
+    var id = GetURLParameter("id");
+    var gia = 0;
+    if (sessionStorage.getItem('user') === "null") {
+        alert("Please Login!");
+    } else {
+        $.ajax({
+            url: 'http://localhost:500/sanpham/tien/' + id,
+            dataType: 'json',
+            timeout: 10000,
+        }).done(function(data) {
+            $.each(data, function(idx, item) {
+                gia = gia + item.GIAKHOIDIEM + item.BUOCNHAY;
+
+                var body = {
+                    MASP: id,
+                    GIA: gia,
+                    MATK: sessionStorage.getItem('id')
+                };
+
+                $.ajax({
+                    url: 'http://localhost:500/daugia/',
+                    dataType: 'json',
+                    timeout: 10000,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(body)
+                }).done(function(data) {
+                }).fail(function(xhr, textStatus, error) {
+                    console.log(textStatus);
+                    console.log(error);
+                    console.log(xhr);
+                });
+
+                var bodys = {
+                    ID: id,
+                    GIAKHOIDIEM: gia
+                };
+
+                $.ajax({
+                    url: 'http://localhost:500/sanpham/' + id,
+                    dataType: 'json',
+                    timeout: 10000,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(bodys)
+                }).done(function(data) {
+                    alert("OK");
+                    window.location.href = './product.html?id=' + id;
+                }).fail(function(xhr, textStatus, error) {
+                    console.log(textStatus);
+                    console.log(error);
+                    console.log(xhr);
+                });
+
+            });
+        }).fail(function(xhr, textStatus, error) {
+            console.log(textStatus);
+            console.log(error);
+            console.log(xhr);
+        });
+    }
+});
+
+$('#btnmua').on('click', function () {
+    var id = GetURLParameter("id");
+    var gia = 0;
+    if (sessionStorage.getItem('user') === "null") {
+        alert("Please Login!");
+    } else {
+        $.ajax({
+            url: 'http://localhost:500/sanpham/tien/' + id,
+            dataType: 'json',
+            timeout: 10000,
+        }).done(function(data) {
+            $.each(data, function(idx, item) {
+                gia = gia + item.GIABAN;
+
+                var body = {
+                    MASP: id,
+                    GIA: gia,
+                    MATK: sessionStorage.getItem('id')
+                };
+
+                $.ajax({
+                    url: 'http://localhost:500/ketquadg/',
+                    dataType: 'json',
+                    timeout: 10000,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(body)
+                }).done(function(data) {
+                }).fail(function(xhr, textStatus, error) {
+                    console.log(textStatus);
+                    console.log(error);
+                    console.log(xhr);
+                });
+            });
+        }).fail(function(xhr, textStatus, error) {
+            console.log(textStatus);
+            console.log(error);
+            console.log(xhr);
+        });
+    }
 });
 
 var loadProduct = function () {
@@ -23,38 +136,13 @@ var loadProduct = function () {
         dataType: 'json',
         timeout: 10000
     }).done(function (data) {
-        $.each(data, function(idx, item) {
-            var tr = 
-            '<div class="container-fluid">' +
-	            '<div class="row">' +
-	                '<div class="col-sm-6 col-md-6">' +
-	                    '<img src="http://localhost:500/' + item.HINH + '">' +
-	                '</div>' +
-	                '<div class="col-sm-6 col-md-6">' +
-	                    '<h2>' + item.TENSP +'</h2>' +
-	                    '<div>' +
-	                        '<label>Giá Mua Ngay: ' + item.GIABAN + ' vnđ </label>' +
-	                        '<a href="javascript:;" class="btn btn-danger">' +
-	                            '<span class="glyphicon glyphicon-shopping-cart"></span>' +
-	                            'Mua Ngay' +
-	                        '</a>' +
-	                    '</div>' +
-	                    '<br>' +
-	                    '<div>' +
-	                        '<label>Giá Hiện Tại: ' + item.GIAKHOIDIEM + ' vnđ </label>' +
-	                        '<a href="javascript:;" class="btn btn-danger">' +
-	                            '<span class="glyphicon glyphicon-shopping-cart"></span>' +
-	                            'Đấu Giá' +
-	                        '</a>' +
-	                    '</div>' +
-	                    '<br>' +
-	                    '<div>' +
-	                        '<label>Mô Tả:' + item.MOTA + '</label>' +
-	                    '</div>' +
-	                '</div>' +
-	            '</div>' +
-	        '</div>';
-            $('#list').append(tr);
+        var source = $('#product-template').html();
+        var template = Handlebars.compile(source);
+        var html = template(data.sanpham); 
+        $('#product-list').append(html);
+        
+        $('#product-list div[style]').fadeIn(200, function () {
+            $(this).removeAttr('style');
         });
     });
 };

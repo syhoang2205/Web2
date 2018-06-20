@@ -2,19 +2,10 @@ var express = require('express');
 var KetQuaDGRepo = require('../repos/KetQuaDGRepo');
 var router = express.Router();
 
-router.get('/:id', (req, res) => {
-	if (req.params.id) {
-		var id = req.params.id;
-
-		if (isNaN(id)) {
-			res.statusCode = 400;
-			res.end();
-			return;
-		}
-
-		KetQuaDGRepo.load(id).then(rows => {
+router.get('/', (req, res) => {
+		KetQuaDGRepo.load().then(rows => {
 			if (rows.length > 0) {
-				res.json(rows[0]);
+				res.json(rows);
 			} else {
 				res.statusCode = 204;
 				res.end();
@@ -24,10 +15,6 @@ router.get('/:id', (req, res) => {
 			res.statusCode = 500;
 			res.json('error');
 		});
-	} else {
-		res.statusCode = 400;
-		res.json('error');
-	}
 });
 
 router.post('/', (req, res) => {
@@ -46,6 +33,25 @@ router.post('/', (req, res) => {
 			res.statusCode = 500;
 			res.end();
 		});
+});
+
+router.delete('/:id', (req, res) => {
+	if (req.params.id) {
+		var id = req.params.id;
+		
+		KetQuaDGRepo.delete(id).then(affectedRows => {
+			res.json({
+				affectedRows: affectedRows
+			});
+		}).catch(err => {
+			console.log(err);
+			res.statusCode = 500;
+			res.json('error');
+		});
+	} else {
+		res.statusCode = 400;
+		res.json('error');
+	}
 });
 
 module.exports = router;

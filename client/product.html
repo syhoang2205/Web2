@@ -53,19 +53,12 @@
 			            </ul>
 			        </li>
                 </ul>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group">
-                        <input id="txtsearch" type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button id="btnsearch" type="button" class="btn btn-default">Search</button>
-                </form>
-                <form class="navbar-form navbar-right">
-                    <button id="btnwishlist" type="button" class="btn btn-default">Wishlist</button>
-                </form>
             </div>
         </div>
     </nav>
-    <div id="list"></div>
+    <div id="product-list"></div>
+    <button id="btndaugia" type="submit" class="btn btn-danger">Đấu Giá</button>
+    <button id="btnmua" type="submit" class="btn btn-danger">Mua Ngay</button>
     <div class="container-fluid">
         <table class="table">
             <thead class="thead-dark">
@@ -78,6 +71,34 @@
             <tbody id="listb"></tbody>
         </table>
     </div>
+
+    <script id="product-template" type="text/x-handlebars-template">
+    	{{#each this}}
+    		<div class="container-fluid">
+	            <div class="row">
+	                <div class="col-sm-6 col-md-6">
+	                    <img src="http://localhost:500/{{HINH}}">
+	                </div>
+	                <div class="col-sm-6 col-md-6">
+	                    <h2> {{TENSP}} </h2>
+	                    <br>
+	                    <div>
+                            <label>Giá Bán: {{GIABAN}} vnđ </label>
+	                    </div>
+                        <div>
+                            <label>Giá Hiện Tại: {{GIAKHOIDIEM}} vnđ </label>
+                            </br>
+                            <label>Lượt Ra Gia Tiếp: {{GIAKHOIDIEM}} + {{BUOCNHAY}} vnđ </label>
+                        </div>
+	                    <br>
+	                    <div>
+	                        <label>Mô Tả: {{MOTA}}</label>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    {{/each}}
+    </script>
 
     <script src="assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="assets/handlebars.min-v4.0.11.js"></script>

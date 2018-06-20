@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th6 19, 2018 lúc 08:04 AM
+-- Thời gian đã tạo: Th6 20, 2018 lúc 08:35 AM
 -- Phiên bản máy phục vụ: 5.7.21
 -- Phiên bản PHP: 5.6.35
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `danhmucsp` (
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Đang đổ dữ liệu cho bảng `danhmucsp`
@@ -60,14 +60,7 @@ CREATE TABLE IF NOT EXISTS `daugia` (
   `NGAY` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `FK_DauGiaSanPham` (`MASP`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Đang đổ dữ liệu cho bảng `daugia`
---
-
-INSERT INTO `daugia` (`ID`, `MASP`, `GIA`, `NGDG`, `NGAY`) VALUES
-(1, 1, 500000, 1, '2018-06-18 18:42:38');
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -82,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `ketquadg` (
   `GIA` double NOT NULL,
   `NGDG` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -119,6 +112,7 @@ CREATE TABLE IF NOT EXISTS `sanpham` (
   `MADM` int(11) NOT NULL,
   `GIAKHOIDIEM` double NOT NULL,
   `GIABAN` int(11) NOT NULL,
+  `BUOCNHAY` double NOT NULL,
   `MOTA` text CHARACTER SET utf8 COLLATE utf8_general_mysql500_ci NOT NULL,
   `TRANGTHAI` int(11) NOT NULL DEFAULT '2',
   `NGAYBD` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -128,18 +122,18 @@ CREATE TABLE IF NOT EXISTS `sanpham` (
   `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `FK_SanPhamDanhMuc` (`MADM`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Đang đổ dữ liệu cho bảng `sanpham`
 --
 
-INSERT INTO `sanpham` (`ID`, `NGUOIBAN`, `TENSP`, `MADM`, `GIAKHOIDIEM`, `GIABAN`, `MOTA`, `TRANGTHAI`, `NGAYBD`, `NGAYKT`, `HINH`, `createdAt`, `updatedAt`) VALUES
-(1, 1, 'IPhone X', 2, 500000, 20000000, 'Điện Thoại IP X', 1, '2018-06-01 10:00:00', '2018-10-17 11:00:00', 'ipx.jpg', '2018-05-31 17:07:08', '2018-10-01 17:07:08'),
-(2, 1, 'IPhone 8P', 2, 400000, 15000000, 'Điện Thoại IP 8 Plus', 1, '2018-06-01 05:00:00', '2018-11-01 04:00:00', 'ip8p.jpg', '2018-05-31 17:07:08', '2018-05-31 17:07:08'),
-(3, 1, 'IPhone 8', 2, 300000, 10000000, 'Điện Thoại IP 8', 1, '2018-06-01 19:00:00', '2018-10-01 00:00:00', 'ip8.jpg', '2018-05-31 17:07:08', '2018-05-31 17:07:08'),
-(4, 1, 'MacBook Pro', 1, 1000000, 25000000, 'Máy Tính Xách Tay Macbook Pro 15', 1, '2018-05-03 07:00:00', '2018-05-11 07:00:00', 'mbr.jpg', '2018-04-30 17:07:08', '2018-05-31 17:07:08'),
-(6, 1, 'Xiaomi Mi4', 2, 300000, 3000000, 'Made in China', 1, '2018-06-19 13:22:26', '2018-06-26 00:00:00', 'mi4.jpg', '2018-06-19 06:22:26', '2018-06-19 06:22:26');
+INSERT INTO `sanpham` (`ID`, `NGUOIBAN`, `TENSP`, `MADM`, `GIAKHOIDIEM`, `GIABAN`, `BUOCNHAY`, `MOTA`, `TRANGTHAI`, `NGAYBD`, `NGAYKT`, `HINH`, `createdAt`, `updatedAt`) VALUES
+(1, 1, 'IPhone X', 2, 700000, 20000000, 100000, 'Điện Thoại IP X', 1, '2018-06-01 10:00:00', '2018-10-17 11:00:00', 'ipx.jpg', '2018-05-31 17:07:08', '2018-10-01 17:07:08'),
+(2, 1, 'IPhone 8P', 2, 400000, 15000000, 100000, 'Điện Thoại IP 8 Plus', 1, '2018-06-01 05:00:00', '2018-11-01 04:00:00', 'ip8p.jpg', '2018-05-31 17:07:08', '2018-05-31 17:07:08'),
+(3, 1, 'IPhone 8', 2, 700000, 10000000, 100000, 'Điện Thoại IP 8', 1, '2018-06-01 19:00:00', '2018-10-01 00:00:00', 'ip8.jpg', '2018-05-31 17:07:08', '2018-05-31 17:07:08'),
+(4, 1, 'MacBook Pro', 1, 1200000, 25000000, 100000, 'Máy Tính Xách Tay Macbook Pro 15', 1, '2018-05-03 07:00:00', '2018-05-11 07:00:00', 'mbr.jpg', '2018-04-30 17:07:08', '2018-05-31 17:07:08'),
+(17, 1, 'Xiaomi Mi4', 2, 1100000, 4000000, 100000, 'Made In China', 1, '2018-06-19 22:33:58', '2018-06-26 22:33:58', 'mi4.jpg', '2018-06-19 15:33:58', '2018-06-19 15:33:58');
 
 -- --------------------------------------------------------
 
@@ -160,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `taikhoan` (
   `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `FK_TaiKhoanLoaiTaiKhoan` (`LOAITK`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Đang đổ dữ liệu cho bảng `taikhoan`

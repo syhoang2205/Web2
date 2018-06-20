@@ -19,3 +19,23 @@ exports.loadtime = function() {
 	var sql = `SELECT * FROM sanpham WHERE TRANGTHAI = 1`;
 	return db.load(sql);
 }
+
+exports.wishlist = function(id) {
+	var sql = `Select DISTINCT s.* From daugia d, sanpham s WHERE d.MASP = s.ID and d.NGDG = ${id}`;
+	return db.load(sql);
+}
+
+exports.store = function(id) {
+	var sql = `Select DISTINCT s.* From ketquadg d, sanpham s WHERE d.MASP = s.ID and d.NGDG = ${id}`;
+	return db.load(sql);
+}
+
+exports.Win = function(id) {
+	var sql = `SELECT * FROM daugia WHERE GIA = (SELECT MAX(d.GIA) FROM daugia d WHERE d.MASP = ${id}) and MASP = ${id}`;
+	return db.load(sql);
+}
+
+exports.buy = function(id) {
+	var sql = `Select * from sanpham where NGUOIBAN = ${id}`;
+	return db.load(sql);
+}
