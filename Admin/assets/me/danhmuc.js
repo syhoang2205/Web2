@@ -1,5 +1,8 @@
 $(function () {
 	XacNhan();
+    if (sessionStorage.getItem('user') === null) {
+        window.location.href = './index.html';
+    }
 });
 
 $('#btnAdDM').on('click', function () {
