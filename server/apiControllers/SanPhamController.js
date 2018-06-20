@@ -180,6 +180,7 @@ router.post('/', (req, res) => {
 				MADM: req.body.MADM,
 				GIAKHOIDIEM: req.body.GIAKHOIDIEM,
 				GIABAN: req.body.GIABAN,
+				BUOCNHAY: req.body.BUOCNHAY,
 				MOTA: req.body.MOTA,
 				HINH: req.body.HINH
 			};

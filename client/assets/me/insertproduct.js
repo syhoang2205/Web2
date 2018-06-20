@@ -27,6 +27,7 @@ $('#btnAddSanPham').on('click', function() {
     var _MADM = sessionStorage.getItem('IDDM');
     var _GIAKHOIDIEM = $('#txtGiaKD').val();
     var _GIABAN = $('#txtGiaB').val();
+    var _BUOCNHAY = $('#txtBuocN').val();
     var _MOTA = $('#txtMota').val();
     var _HINH = input.files[0].name;
 
@@ -36,6 +37,7 @@ $('#btnAddSanPham').on('click', function() {
         MADM: _MADM,
         GIAKHOIDIEM: _GIAKHOIDIEM,
         GIABAN: _GIABAN,
+        BUOCNHAY: _BUOCNHAY,
         MOTA: _MOTA,
         HINH: _HINH
     };

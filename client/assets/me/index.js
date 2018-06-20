@@ -22,6 +22,10 @@ $(function () {
 });
 
 $('#btnMore').on('click', function () {
+
+});
+
+$('#btnMore').on('click', function () {
     loadProducts();
 });
 
@@ -231,8 +235,7 @@ function timedown(id, sParam) {
         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        document.getElementById(name).innerHTML = days + ":" + hours + ":"
-        + minutes + ":" + seconds;
+        document.getElementById(name).innerHTML = days + ":" + hours + ":" + minutes + ":" + seconds;
         if (distance < 0) {
             clearInterval(x);
             document.getElementById(namebt).disabled = true;
@@ -251,8 +254,7 @@ function timedown1(id, sParam) {
         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        document.getElementById(name).innerHTML = days + ":" + hours + ":"
-        + minutes + ":" + seconds;
+        document.getElementById(name).innerHTML = days + ":" + hours + ":" + minutes + ":" + seconds;
         if (distance < 0) {
             clearInterval(x);
             document.getElementById(namebt).disabled = true;
@@ -271,8 +273,7 @@ function timedown2(id, sParam) {
         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        document.getElementById(name).innerHTML = days + ":" + hours + ":"
-        + minutes + ":" + seconds;
+        document.getElementById(name).innerHTML = days + ":" + hours + ":" + minutes + ":" + seconds;
         if (distance < 0) {
             clearInterval(x);
             document.getElementById(namebt).disabled = true;

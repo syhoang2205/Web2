@@ -41,7 +41,7 @@ exports.load = function(id) {
 }
 
 exports.add = function(poco) {
-	var sql = `insert into sanpham(NGUOIBAN, TENSP, MADM, GIAKHOIDIEM, GIABAN, MOTA, NGAYKT, HINH) values('${poco.NGUOIBAN}', '${poco.TENSP}', '${poco.MADM}','${poco.GIAKHOIDIEM}','${poco.GIABAN}','${poco.MOTA}',DATE_ADD(NOW(), INTERVAL 7 DAY),'${poco.HINH}')`;
+	var sql = `insert into sanpham(NGUOIBAN, TENSP, MADM, GIAKHOIDIEM, GIABAN, BUOCNHAY, MOTA, NGAYKT, HINH) values('${poco.NGUOIBAN}', '${poco.TENSP}', '${poco.MADM}','${poco.GIAKHOIDIEM}','${poco.GIABAN}','${poco.BUOCNHAY}','${poco.MOTA}',DATE_ADD(NOW(), INTERVAL 7 DAY),'${poco.HINH}')`;
 	return db.insert(sql);
 }
 
